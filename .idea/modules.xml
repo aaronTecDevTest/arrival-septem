@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/appium/appium.iml" filepath="$PROJECT_DIR$/appium/appium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arrival-septem.iml" filepath="$PROJECT_DIR$/arrival-septem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaFX/javaFX.iml" filepath="$PROJECT_DIR$/javaFX/javaFX.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selenium/selenium.iml" filepath="$PROJECT_DIR$/selenium/selenium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testNG/testNG.iml" filepath="$PROJECT_DIR$/testNG/testNG.iml" />
+    </modules>
+  </component>
+</project>
