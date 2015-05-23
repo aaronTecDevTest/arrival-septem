@@ -26,7 +26,8 @@ public class SeleniumRunTestOnGrid {
 
     String baseURLGo;
     String baseURLFa;
-    String nodeURL;
+    String nodeURLGo;
+    String nodeURLFa;
 
     public static void main(String[] args) {
         try {
@@ -48,10 +49,9 @@ public class SeleniumRunTestOnGrid {
         baseURLFa = "https://www.facebook.com";
     }
 
-
     @Test
     public void runTestOnCH() throws Exception {
-        nodeURL = "http://localhost:5556/wd/hub";
+        nodeURLGo = "http://localhost:5556/wd/hub";
 
         //Create a new instance of Capabilities with Chrome
         capabilitiesGo = DesiredCapabilities.chrome();
@@ -60,37 +60,35 @@ public class SeleniumRunTestOnGrid {
 
         // Create a new instance of the RemoteWebDriver
         // with a firefox DesiredCapability and URL
-        driverGo = new RemoteWebDriver(new URL(nodeURL), capabilitiesGo);
+        driverGo = new RemoteWebDriver(new URL(nodeURLGo), capabilitiesGo);
 
         driverGo.get(baseURLGo);
         Thread.sleep(5000);
         Assert.assertEquals("Google", driverGo.getTitle());
-        driverGo.close();
     }
-
 
     @Test
     public void runTestOnFF() throws Exception {
-        nodeURL = "http://localhost:5555/wd/hub";
+        nodeURLFa = "http://localhost:5555/wd/hub";
 
         //Create a new instance of Capabilities with Firefox
-        capabilitiesFa = DesiredCapabilities.chrome();
-        capabilitiesFa.setBrowserName("chrome");
+        capabilitiesFa = DesiredCapabilities.firefox();
+        capabilitiesFa.setBrowserName("firefox");
         capabilitiesFa.setPlatform(Platform.WINDOWS);
 
         // Create a new instance of the RemoteWebDriver
         // with a firefox DesiredCapability and URL
-        driverFa = new RemoteWebDriver(new URL(nodeURL), capabilitiesFa);
+        driverFa = new RemoteWebDriver(new URL(nodeURLFa), capabilitiesFa);
 
         driverFa.get(baseURLFa);
         Thread.sleep(5000);
-        Assert.assertEquals("Google", driverFa.getTitle());
-        driverFa.close();
+        Assert.assertEquals("Willkommen bei Facebook - anmelden, registrieren oder mehr erfahren", driverFa.getTitle());
    }
 
-
-    //@AfterTest
+    @AfterTest
     public void closeBrowser(){
         //Close the browser
+        driverFa.close();
+        driverGo.close();
     }
 }

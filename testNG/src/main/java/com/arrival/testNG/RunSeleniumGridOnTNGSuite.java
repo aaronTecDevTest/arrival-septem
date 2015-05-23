@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.arrival.selenium.SeleniumMultipleGrid;
-import com.arrival.selenium.SeleniumRunTestOnGrid;
 
 
 /**
@@ -30,9 +29,8 @@ public class RunSeleniumGridOnTNGSuite {
 
     XmlTest testXML = new XmlTest(suite);
 
-    public RunSeleniumGridOnTNGSuite()
-    {
 
+    public RunSeleniumGridOnTNGSuite() {
         SeleniumMultipleGrid multipleGrid = new SeleniumMultipleGrid();
         multipleGrid.run();
 
@@ -40,7 +38,6 @@ public class RunSeleniumGridOnTNGSuite {
         tng.setDefaultSuiteName("RegressionsTest");
         testXML.setName("RegressionsTest");
     }
-
 
     public void runVirtualSuit() {
         createVirtualSuite();
@@ -92,7 +89,6 @@ public class RunSeleniumGridOnTNGSuite {
         System.out.println(path);
         return path;
     }
-
 
     public static void main(String[] args) {
         RunSeleniumGridOnTNGSuite runTest = new RunSeleniumGridOnTNGSuite();

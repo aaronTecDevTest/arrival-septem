@@ -61,10 +61,7 @@ public class SeleniumMultipleGrid {
 
         try {
             remoteRCNode = attachNodeToHub(chrome, GridRole.NODE, 5556, SeleniumProtocol.Selenium);
-            remoteWebDriverNode = attachNodeToHub(DesiredCapabilities.chrome(), GridRole.NODE, 5555, SeleniumProtocol
-                                                                                                        .WebDriver);
-           //remoteWebDriverNode = attachNodeToHub(DesiredCapabilities.firefox(), GridRole.NODE, 5555,
-                                                        //SeleniumProtocol.WebDriver);
+            remoteWebDriverNode = attachNodeToHub(DesiredCapabilities.firefox(), GridRole.NODE, 5555, SeleniumProtocol.WebDriver);
         } catch (Exception e) {
             System.out.println("Error attaching node.");
             e.printStackTrace();
