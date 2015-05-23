@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" verbose="2">
+    <test name="Regression_Class1">
+        <classes>
+            <class name="de.telekom.pni.rmstest.backend.testng.test.SimpleTest1"/>
+            <class name="de.telekom.pni.rmstest.backend.testng.test.SimpleTest2"/>
+            <!--class name="de.telekom.pni.rmstest.backend.testng.test.SimpleTest2"/-->
+        </classes>
+    </test>
+</suite>

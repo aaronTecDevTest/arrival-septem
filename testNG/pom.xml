@@ -11,5 +11,12 @@
 
     <artifactId>testNG</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.tesdevtests.arrival-septem</groupId>
+            <artifactId>selenium</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -17,23 +17,41 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+      <profile default="false" name="Annotation profile for selenium" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="selenium" />
+      </profile>
+      <profile default="false" name="Annotation profile for javaFX" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="javaFX" />
+      </profile>
+      <profile default="false" name="Annotation profile for appium" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="appium" />
-        <module name="javaFX" />
-        <module name="selenium" />
+      </profile>
+      <profile default="false" name="Annotation profile for testNG" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
         <module name="testNG" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="appium" target="1.5" />
-      <module name="arrival-septem" target="1.5" />
-      <module name="javaFX" target="1.5" />
-      <module name="selenium" target="1.5" />
-      <module name="testNG" target="1.5" />
+      <module name="appium" target="1.8" />
+      <module name="arrival-septem" target="1.8" />
+      <module name="javaFX" target="1.8" />
+      <module name="selenium" target="1.8" />
+      <module name="testNG" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

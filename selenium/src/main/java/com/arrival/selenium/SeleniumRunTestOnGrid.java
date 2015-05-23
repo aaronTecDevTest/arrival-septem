@@ -8,7 +8,6 @@ import java.net.URL;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -19,9 +18,14 @@ import org.testng.annotations.*;
 public class SeleniumRunTestOnGrid {
 
     //Declaration  var
-    DesiredCapabilities capabilities;
-    WebDriver driver;
-    String baseURL;
+    DesiredCapabilities capabilitiesGo;
+    WebDriver driverGo;
+
+    DesiredCapabilities capabilitiesFa;
+    WebDriver driverFa;
+
+    String baseURLGo;
+    String baseURLFa;
     String nodeURL;
 
     public static void main(String[] args) {
@@ -40,7 +44,8 @@ public class SeleniumRunTestOnGrid {
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
-        baseURL = "https://www.google.com";
+        baseURLGo = "https://www.google.com";
+        baseURLFa = "https://www.facebook.com";
     }
 
 
@@ -49,17 +54,18 @@ public class SeleniumRunTestOnGrid {
         nodeURL = "http://localhost:5556/wd/hub";
 
         //Create a new instance of Capabilities with Chrome
-        capabilities = DesiredCapabilities.chrome();
-        capabilities.setBrowserName("chrome");
-        capabilities.setPlatform(Platform.WINDOWS);
+        capabilitiesGo = DesiredCapabilities.chrome();
+        capabilitiesGo.setBrowserName("chrome");
+        capabilitiesGo.setPlatform(Platform.WINDOWS);
 
         // Create a new instance of the RemoteWebDriver
         // with a firefox DesiredCapability and URL
-        driver = new RemoteWebDriver(new URL(nodeURL), capabilities);
+        driverGo = new RemoteWebDriver(new URL(nodeURL), capabilitiesGo);
 
-        driver.get(baseURL);
-        Thread.sleep(2000);
-        Assert.assertEquals("Google", driver.getTitle());
+        driverGo.get(baseURLGo);
+        Thread.sleep(5000);
+        Assert.assertEquals("Google", driverGo.getTitle());
+        driverGo.close();
     }
 
 
@@ -68,24 +74,23 @@ public class SeleniumRunTestOnGrid {
         nodeURL = "http://localhost:5555/wd/hub";
 
         //Create a new instance of Capabilities with Firefox
-        capabilities = DesiredCapabilities.firefox();
-        capabilities.setBrowserName("firefox");
-        capabilities.setPlatform(Platform.WINDOWS);
+        capabilitiesFa = DesiredCapabilities.chrome();
+        capabilitiesFa.setBrowserName("chrome");
+        capabilitiesFa.setPlatform(Platform.WINDOWS);
 
         // Create a new instance of the RemoteWebDriver
         // with a firefox DesiredCapability and URL
-        driver = new RemoteWebDriver(new URL(nodeURL), capabilities);
+        driverFa = new RemoteWebDriver(new URL(nodeURL), capabilitiesFa);
 
-        driver.get(baseURL);
-        Thread.sleep(2000);
-        Assert.assertEquals("Google", driver.getTitle());
+        driverFa.get(baseURLFa);
+        Thread.sleep(5000);
+        Assert.assertEquals("Google", driverFa.getTitle());
+        driverFa.close();
    }
 
 
-    @AfterTest
+    //@AfterTest
     public void closeBrowser(){
         //Close the browser
-        driver.close();
-        driver.quit();
     }
 }

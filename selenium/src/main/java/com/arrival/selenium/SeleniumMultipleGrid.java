@@ -19,10 +19,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class SeleniumMultipleGrid {
 
-    private GridHubConfiguration gridHubConfig;
-    private Hub hub;
-    private String hubHost;
-    private Integer hubPort;
+    protected GridHubConfiguration gridHubConfig;
+    protected Hub hub;
+    protected String hubHost;
+    protected Integer hubPort;
 
     SelfRegisteringRemote remoteWebDriverNode;
     SelfRegisteringRemote remoteRCNode;
@@ -61,8 +61,10 @@ public class SeleniumMultipleGrid {
 
         try {
             remoteRCNode = attachNodeToHub(chrome, GridRole.NODE, 5556, SeleniumProtocol.Selenium);
-            remoteWebDriverNode = attachNodeToHub(DesiredCapabilities.firefox(), GridRole.NODE, 5555,
-                                                         SeleniumProtocol.WebDriver);
+            remoteWebDriverNode = attachNodeToHub(DesiredCapabilities.chrome(), GridRole.NODE, 5555, SeleniumProtocol
+                                                                                                        .WebDriver);
+           //remoteWebDriverNode = attachNodeToHub(DesiredCapabilities.firefox(), GridRole.NODE, 5555,
+                                                        //SeleniumProtocol.WebDriver);
         } catch (Exception e) {
             System.out.println("Error attaching node.");
             e.printStackTrace();
