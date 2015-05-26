@@ -23,6 +23,7 @@ public class SeleniumMultipleGrid {
     protected Hub hub;
     protected String hubHost;
     protected Integer hubPort;
+    protected String osName;
 
     SelfRegisteringRemote remoteWebDriverNode;
     SelfRegisteringRemote remoteRCNode;
@@ -32,7 +33,15 @@ public class SeleniumMultipleGrid {
         gridHubConfig = new GridHubConfiguration();
         hubHost = "localhost";
         hubPort = 4444;
-        System.setProperty("webdriver.chrome.driver", "D:/Dev/project/arrival-septem/selenium/src/main/resources/chromedriver.exe");
+        osName = System.getProperty("os.name");
+
+        if (osName.contains("Mac OS X")) {
+            System.setProperty("webdriver.chrome.driver","../arrival-septem/selenium/src/main/resources/chromedriver");
+        }
+        else {
+            System.setProperty("webdriver.chrome.driver", "../arrival-septem/selenium/src/main/resources/chromedriver.exe");
+            System.setProperty("webdriver.internetexplora.driver", "../arrival-septem/selenium/src/main/resources/IEDriverServer.exe");
+        }
     }
 
     public static void main(String[] args) {

@@ -65,7 +65,8 @@ public class RunSeleniumGridOnTNGSuite {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
         Calendar cal = Calendar.getInstance();
         String tempPath = "../arrival-septem/testNG/src/main/resources/testng/result/";
-        String outPutDirectory = tempPath + tempPath + dateFormat.format(cal.getTime());
+       // String outPutDirectory = tempPath;
+        String outPutDirectory = tempPath  + dateFormat.format(cal.getTime());
 
         createNewDirectory(outPutDirectory);
         return outPutDirectory;

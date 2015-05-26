@@ -35,7 +35,7 @@ public class SeleniumRunTestOnMultiGrid {
             simpleGrid.setUp();
             simpleGrid.runTestOnFF();
             simpleGrid.runTestOnCH();
-            simpleGrid.clone();
+            simpleGrid.closeBrowser();
         } catch (Exception e) {
             e.printStackTrace();
         }

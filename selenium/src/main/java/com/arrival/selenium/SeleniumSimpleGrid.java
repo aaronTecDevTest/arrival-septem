@@ -24,6 +24,7 @@ import java.util.Map;
 
 public class SeleniumSimpleGrid {
 
+
     private GridHubConfiguration gridHubConfig;
     private Hub hub;
     private String hubHost;
@@ -31,17 +32,26 @@ public class SeleniumSimpleGrid {
     private Map <String,Object> nodeConfiguration;
     private RegistrationRequest req;
     private SelfRegisteringRemote remoteRCNode;
+    protected  String osName;
 
     public static void main(String[] args) {
         SeleniumSimpleGrid hubNode = new SeleniumSimpleGrid();
         hubNode.runHubNode();
-       // hubNode.stopHubNode();
+       // hubNode.shutDownNodeAndHub();
     }
 
     public SeleniumSimpleGrid(){
         gridHubConfig = new GridHubConfiguration();
         hubHost = "localhost";
         hubPort = 4444;
+
+        if (osName.contains("Mac OS X")) {
+            System.setProperty("webdriver.chrome.driver","../arrival-septem/selenium/src/main/resources/chromedriver");
+        }
+        else {
+            System.setProperty("webdriver.chrome.driver", "../arrival-septem/selenium/src/main/resources/chromedriver.exe");
+            System.setProperty("webdriver.internetexplora.driver", "../arrival-septem/selenium/src/main/resources/IEDriverServer.exe");
+        }
     }
 
     public void setUpHub() throws Exception {
