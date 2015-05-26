@@ -15,7 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 
-public class SeleniumRunTestOnGrid {
+public class SeleniumRunTestOnMultiGrid {
 
     //Declaration  var
     DesiredCapabilities capabilitiesGo;
@@ -31,16 +31,17 @@ public class SeleniumRunTestOnGrid {
 
     public static void main(String[] args) {
         try {
-            SeleniumRunTestOnGrid simpleGrid = new SeleniumRunTestOnGrid();
+            SeleniumRunTestOnMultiGrid simpleGrid = new SeleniumRunTestOnMultiGrid();
             simpleGrid.setUp();
             simpleGrid.runTestOnFF();
-            simpleGrid.runTestOnFF();
+            simpleGrid.runTestOnCH();
+            simpleGrid.clone();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public SeleniumRunTestOnGrid(){
+    public SeleniumRunTestOnMultiGrid(){
     }
 
     @BeforeTest

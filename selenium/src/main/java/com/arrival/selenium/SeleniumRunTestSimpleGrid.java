@@ -15,12 +15,18 @@ import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class SeleniumSimpleRC {
+
+/**
+ * This Class run Testcase on a Remoter (hiere SimpleGri.)
+ * Before running this Class make sure to run the SeleniumSimpleGrid.
+ **/
+
+public class SeleniumRunTestSimpleGrid {
     WebDriver driver;
 
     public static void main(String[] args) {
         try {
-            SeleniumSimpleRC simpleRCTest = new SeleniumSimpleRC();
+            SeleniumRunTestSimpleGrid simpleRCTest = new SeleniumRunTestSimpleGrid();
             simpleRCTest.setUpConfi();
             simpleRCTest.runTest();
             simpleRCTest.closeBrowser();
@@ -31,7 +37,7 @@ public class SeleniumSimpleRC {
         }
     }
 
-    public SeleniumSimpleRC(){
+    public SeleniumRunTestSimpleGrid(){
     }
 
     public void setUpConfi() throws MalformedURLException {

@@ -52,7 +52,7 @@ public class RunSeleniumGridOnTNGSuite {
         suite.setThreadCount(5);
         testXML.setName("TmpTest");
 
-        classes.add(new XmlClass("com.arrival.selenium.SeleniumRunTestOnGrid"));
+        classes.add(new XmlClass("com.arrival.selenium.SeleniumRunTestOnMultiGrid"));
         testXML.setXmlClasses(classes);
 
         // System.out.println(testXML.getSuite().toXml());
@@ -64,8 +64,8 @@ public class RunSeleniumGridOnTNGSuite {
     private String getNewPathDirectory() {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
         Calendar cal = Calendar.getInstance();
-        String tempPath = "D:/Dev/project/arrival-septem/testNG/src/main/resources/testng/result/";
-        String outPutDirectory = tempPath + "heute";//tempPath + dateFormat.format(cal.getTime());
+        String tempPath = "../arrival-septem/testNG/src/main/resources/testng/result/";
+        String outPutDirectory = tempPath + tempPath + dateFormat.format(cal.getTime());
 
         createNewDirectory(outPutDirectory);
         return outPutDirectory;
