@@ -10,25 +10,23 @@ import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 
 public class RunTestNGClasses {
-    TestListenerAdapter tla;
-    TestNG testng;
+TestListenerAdapter tla;
+TestNG testng;
 
 
-    RunTestNGClasses(){
-        tla = new TestListenerAdapter();
-        testng = new TestNG();
-    }
+RunTestNGClasses() {
+	tla = new TestListenerAdapter();
+	testng = new TestNG();
+}
 
+public static void main(String[] args) {
+	RunTestNGClasses runTest = new RunTestNGClasses();
+	runTest.run();
+}
 
-    public void run() {
-        testng.setTestClasses(new Class[]{SimpleTest1.class, SimpleTest2.class});
-        testng.addListener(tla);
-        testng.run();
-    }
-
-
-    public static void main(String[] args) {
-        RunTestNGClasses runTest= new RunTestNGClasses();
-        runTest.run();
-    }
+public void run() {
+	testng.setTestClasses(new Class[]{SimpleTest1.class, SimpleTest2.class});
+	testng.addListener(tla);
+	testng.run();
+}
 }

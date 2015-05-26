@@ -21,78 +21,78 @@ import com.arrival.selenium.SeleniumMultipleGrid;
 
 public class RunSeleniumGridOnTNGSuite {
 
-    XmlSuite suite = new XmlSuite();
-    List<XmlSuite> suites = new ArrayList<>();
+XmlSuite suite = new XmlSuite();
+List<XmlSuite> suites = new ArrayList<>();
 
-    TestNG tng = new TestNG();
-    List<XmlClass> classes = new ArrayList<>();
+TestNG tng = new TestNG();
+List<XmlClass> classes = new ArrayList<>();
 
-    XmlTest testXML = new XmlTest(suite);
+XmlTest testXML = new XmlTest(suite);
 
 
-    public RunSeleniumGridOnTNGSuite() {
-        SeleniumMultipleGrid multipleGrid = new SeleniumMultipleGrid();
-        multipleGrid.run();
+public RunSeleniumGridOnTNGSuite() {
+	SeleniumMultipleGrid multipleGrid = new SeleniumMultipleGrid();
+	multipleGrid.run();
 
-        tng.setOutputDirectory(getNewPathDirectory());
-        tng.setDefaultSuiteName("RegressionsTest");
-        testXML.setName("RegressionsTest");
-    }
+	tng.setOutputDirectory(getNewPathDirectory());
+	tng.setDefaultSuiteName("RegressionsTest");
+	testXML.setName("RegressionsTest");
+}
 
-    public void runVirtualSuit() {
-        createVirtualSuite();
-        suites.add(suite);
-        tng.setXmlSuites(suites);
-        tng.run();
-    }
+public static void main(String[] args) {
+	RunSeleniumGridOnTNGSuite runTest = new RunSeleniumGridOnTNGSuite();
+	runTest.runVirtualSuit();
+}
 
-    private void createVirtualSuite() {
-        suite.setName("TmpSuite");
-        suite.setParallel("methods");
-        suite.setThreadCount(5);
-        testXML.setName("TmpTest");
+public void runVirtualSuit() {
+	createVirtualSuite();
+	suites.add(suite);
+	tng.setXmlSuites(suites);
+	tng.run();
+}
 
-        classes.add(new XmlClass("com.arrival.selenium.SeleniumRunTestOnMultiGrid"));
-        testXML.setXmlClasses(classes);
+private void createVirtualSuite() {
+	suite.setName("TmpSuite");
+	suite.setParallel("methods");
+	suite.setThreadCount(5);
+	testXML.setName("TmpTest");
 
-        // System.out.println(testXML.getSuite().toXml());
-    }
+	classes.add(new XmlClass("com.arrival.selenium.SeleniumRunTestOnMultiGrid"));
+	testXML.setXmlClasses(classes);
 
-    /**
-     * @return Path as a String
-     */
-    private String getNewPathDirectory() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Calendar cal = Calendar.getInstance();
-        String tempPath = "../arrival-septem/testNG/src/main/resources/testng/result/";
-       // String outPutDirectory = tempPath;
-        String outPutDirectory = tempPath  + dateFormat.format(cal.getTime());
+	// System.out.println(testXML.getSuite().toXml());
+}
 
-        createNewDirectory(outPutDirectory);
-        return outPutDirectory;
-    }
+/**
+ * @return Path as a String
+ */
+private String getNewPathDirectory() {
+	DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+	Calendar cal = Calendar.getInstance();
+	String tempPath = "../arrival-septem/testNG/src/main/resources/testng/result/";
+	// String outPutDirectory = tempPath;
+	String outPutDirectory = tempPath + dateFormat.format(cal.getTime());
 
-    private void createNewDirectory(String directoryPath) {
-        File dir = new File(directoryPath);
-        boolean success = dir.mkdir();
+	createNewDirectory(outPutDirectory);
+	return outPutDirectory;
+}
 
-        if (! success)
-            System.out.println("Directory creation failed1");
-        else
-            System.out.println("Directory creation success");
-    }
+private void createNewDirectory(String directoryPath) {
+	File dir = new File(directoryPath);
+	boolean success = dir.mkdir();
 
-    private String getPath() {
-        String path;
+	if (!success)
+		System.out.println("Directory creation failed1");
+	else
+		System.out.println("Directory creation success");
+}
 
-        path = this.getClass().getPackage().getName();
+private String getPath() {
+	String path;
 
-        System.out.println(path);
-        return path;
-    }
+	path = this.getClass().getPackage().getName();
 
-    public static void main(String[] args) {
-        RunSeleniumGridOnTNGSuite runTest = new RunSeleniumGridOnTNGSuite();
-        runTest.runVirtualSuit();
-    }
+	System.out.println(path);
+	return path;
+}
 }

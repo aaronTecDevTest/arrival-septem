@@ -18,75 +18,72 @@ import java.util.List;
 
 public class RunCreateTNGSuite {
 
-    XmlSuite suite = new XmlSuite();
-    List<XmlSuite> suites = new ArrayList<>();
+XmlSuite suite = new XmlSuite();
+List<XmlSuite> suites = new ArrayList<>();
 
-    TestNG tng = new TestNG();
-    List<XmlClass> classes = new ArrayList<>();
+TestNG tng = new TestNG();
+List<XmlClass> classes = new ArrayList<>();
 
-    XmlTest testXML = new XmlTest(suite);
+XmlTest testXML = new XmlTest(suite);
 
-    public RunCreateTNGSuite()
-    {
-        tng.setOutputDirectory(getNewPathDirectory());
-        tng.setDefaultSuiteName("RegressionsTest");
-        testXML.setName("RegressionsTest");
-    }
+public RunCreateTNGSuite() {
+	tng.setOutputDirectory(getNewPathDirectory());
+	tng.setDefaultSuiteName("RegressionsTest");
+	testXML.setName("RegressionsTest");
+}
 
+public static void main(String[] args) {
+	RunCreateTNGSuite runTest = new RunCreateTNGSuite();
+	runTest.runVirtualSuit();
+}
 
-    public void runVirtualSuit() {
-        createVirtualSuite();
-        suites.add(suite);
-        tng.setXmlSuites(suites);
-        tng.run();
-    }
+public void runVirtualSuit() {
+	createVirtualSuite();
+	suites.add(suite);
+	tng.setXmlSuites(suites);
+	tng.run();
+}
 
-    private void createVirtualSuite() {
-        suite.setName("TmpSuite");
-        testXML.setName("TmpTest");
+private void createVirtualSuite() {
+	suite.setName("TmpSuite");
+	testXML.setName("TmpTest");
 
-        classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest1"));
-        classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest2"));
-        testXML.setXmlClasses(classes);
+	classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest1"));
+	classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest2"));
+	testXML.setXmlClasses(classes);
 
-        // System.out.println(testXML.getSuite().toXml());
-    }
+	// System.out.println(testXML.getSuite().toXml());
+}
 
-    /**
-     * @return Path as a String
-     */
-    private String getNewPathDirectory() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Calendar cal = Calendar.getInstance();
-        String tempPath = "D:/Dev/project/arrival-septem/testNG/src/main/resources/testng/result/";
-        String outPutDirectory = tempPath + dateFormat.format(cal.getTime());
+/**
+ * @return Path as a String
+ */
+private String getNewPathDirectory() {
+	DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+	Calendar cal = Calendar.getInstance();
+	String tempPath = "D:/Dev/project/arrival-septem/testNG/src/main/resources/testng/result/";
+	String outPutDirectory = tempPath + dateFormat.format(cal.getTime());
 
-        createNewDirectory(outPutDirectory);
-        return outPutDirectory;
-    }
+	createNewDirectory(outPutDirectory);
+	return outPutDirectory;
+}
 
-    private void createNewDirectory(String directoryPath) {
-        File dir = new File(directoryPath);
-        boolean success = dir.mkdir();
+private void createNewDirectory(String directoryPath) {
+	File dir = new File(directoryPath);
+	boolean success = dir.mkdir();
 
-        if (! success)
-            System.out.println("Directory creation failed1");
-        else
-            System.out.println("Directory creation success");
-    }
+	if (!success)
+		System.out.println("Directory creation failed1");
+	else
+		System.out.println("Directory creation success");
+}
 
-    private String getPath() {
-        String path;
+private String getPath() {
+	String path;
 
-        path = this.getClass().getPackage().getName();
+	path = this.getClass().getPackage().getName();
 
-        System.out.println(path);
-        return path;
-    }
-
-
-    public static void main(String[] args) {
-        RunCreateTNGSuite runTest = new RunCreateTNGSuite();
-        runTest.runVirtualSuit();
-    }
+	System.out.println(path);
+	return path;
+}
 }

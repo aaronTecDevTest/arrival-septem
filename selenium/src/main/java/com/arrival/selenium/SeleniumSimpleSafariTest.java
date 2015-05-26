@@ -14,46 +14,45 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumSimpleSafariTest {
 
-	private WebDriver driver = null;
+private WebDriver driver = null;
 
-	public SeleniumSimpleSafariTest() {
+public SeleniumSimpleSafariTest() {
 
+}
+
+
+public static void main(String[] args) {
+	SeleniumSimpleSafariTest simpleSafariTest = new SeleniumSimpleSafariTest();
+	simpleSafariTest.createDriver();
+	simpleSafariTest.runTest();
+	simpleSafariTest.quitDriver();
+}
+
+private static boolean isSupportedPlatform() {
+	Platform current = Platform.getCurrent();
+	return Platform.MAC.is(current) || Platform.WINDOWS.is(current);
+}
+
+
+public void createDriver() {
+	if (isSupportedPlatform()) {
+		driver = new SafariDriver();
 	}
+}
 
+public void quitDriver() {
+	driver.quit();
+}
 
-	public static void main(String[] args) {
-		SeleniumSimpleSafariTest simpleSafariTest = new SeleniumSimpleSafariTest();
-		simpleSafariTest.createDriver();
-		simpleSafariTest.runTest();
-		simpleSafariTest.quitDriver();
+public void runTest() {
+	driver.get("http://www.google.com");
+	driver.findElement(By.name("q")).sendKeys("webdriver");
+	driver.findElement(By.name("btnG")).click();
+	//new WebDriverWait(driver, 3).until(ExpectedConditions.titleIs("webdriver"));
+	try {
+		Thread.sleep(5000);
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
-
-	private static boolean isSupportedPlatform() {
-		Platform current = Platform.getCurrent();
-		return Platform.MAC.is(current) || Platform.WINDOWS.is(current);
-	}
-
-
-	public void createDriver() {
-		if(isSupportedPlatform()){
-			driver = new SafariDriver();
-		}
-	}
-
-	public void quitDriver() {
-		driver.quit();
-	}
-
-	public void runTest() {
-		driver.get("http://www.google.com");
-		driver.findElement(By.name("q")).sendKeys("webdriver");
-		driver.findElement(By.name("btnG")).click();
-		//new WebDriverWait(driver, 3).until(ExpectedConditions.titleIs("webdriver"));
-		try {
-			Thread.sleep(5000);
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+}
 }

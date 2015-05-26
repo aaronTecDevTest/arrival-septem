@@ -44,8 +44,6 @@ public void setUp() throws Exception {
 	    driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);*/
 
 
-
-
 	//Run in a iOS-Devices
 	DesiredCapabilities capabilities = new DesiredCapabilities();
 	capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);

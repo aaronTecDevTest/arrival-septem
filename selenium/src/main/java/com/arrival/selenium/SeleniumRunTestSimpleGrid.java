@@ -22,46 +22,46 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  **/
 
 public class SeleniumRunTestSimpleGrid {
-    WebDriver driver;
+WebDriver driver;
 
-    public static void main(String[] args) {
-        try {
-            SeleniumRunTestSimpleGrid simpleRCTest = new SeleniumRunTestSimpleGrid();
-            simpleRCTest.setUpConfi();
-            simpleRCTest.runTest();
-            simpleRCTest.closeBrowser();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+public SeleniumRunTestSimpleGrid() {
+}
 
-    public SeleniumRunTestSimpleGrid(){
-    }
+public static void main(String[] args) {
+	try {
+		SeleniumRunTestSimpleGrid simpleRCTest = new SeleniumRunTestSimpleGrid();
+		simpleRCTest.setUpConfi();
+		simpleRCTest.runTest();
+		simpleRCTest.closeBrowser();
+	} catch (MalformedURLException e) {
+		e.printStackTrace();
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
+}
 
-    public void setUpConfi() throws MalformedURLException {
+public void setUpConfi() throws MalformedURLException {
 
-        // Create a new instance of the RemoteWebDriver
-        // with a firefox DesiredCapability and URL
-        driver = new RemoteWebDriver(new URL("http://localhost:5555/wd/hub"), DesiredCapabilities.firefox());
-    }
+	// Create a new instance of the RemoteWebDriver
+	// with a firefox DesiredCapability and URL
+	driver = new RemoteWebDriver(new URL("http://localhost:5555/wd/hub"), DesiredCapabilities.firefox());
+}
 
-    public void runTest() throws InterruptedException {
+public void runTest() throws InterruptedException {
 
-        // RemoteWebDriver does not implement the TakesScreenshot class
-        // if the driver does have the Capabilities to take a screenshot
-        // then Augmenter will add the TakesScreenshot methods to the instance
-        driver.get("http://www.google.com");
-        WebDriver augmentedDriver = new Augmenter().augment(driver);
-        File screenshot = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
-        Thread.sleep(2000);
-    }
+	// RemoteWebDriver does not implement the TakesScreenshot class
+	// if the driver does have the Capabilities to take a screenshot
+	// then Augmenter will add the TakesScreenshot methods to the instance
+	driver.get("http://www.google.com");
+	WebDriver augmentedDriver = new Augmenter().augment(driver);
+	File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+	Thread.sleep(2000);
+}
 
-    public void closeBrowser(){
+public void closeBrowser() {
 
-        //Close the browser
-        driver.close();
-        driver.quit();
-    }
+	//Close the browser
+	driver.close();
+	driver.quit();
+}
 }
