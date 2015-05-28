@@ -12,7 +12,7 @@ public class AppiumIOS implements AppiumServer{
  * This functions start a current Server over commando line.
  **/
 @Override
-public void runSever() {
+public void startServer() {
 
 }
 

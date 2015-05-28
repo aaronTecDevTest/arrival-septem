@@ -2,13 +2,10 @@
   "capabilities":
   [
     {
-      "browserName": "Android",
-      "version":"4.4.2",
-      "maxInstances": 3,
-      "platform":"ANDROID",
-      "deviceName":"20715382",
-      "seleniumProtocol": "Selenium",
-      "automationName": "Appium"
+      "version": "4.4.2",
+      "maxInstances": 1,
+      "platform": "ANDROID",
+      "deviceName": "Note3"
     }
   ],
   "configuration":
@@ -19,7 +16,7 @@
     "url":"http://127.0.0.1:5555/wd/hub",
     "host": "127.0.0.1",
     "port": 5555,
-    "maxSession": 1,
+    "maxSession": 20,
     "register": true,
     "registerCycle": 5000,
     "hubPort": 4444,

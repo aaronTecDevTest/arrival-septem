@@ -9,7 +9,7 @@ public interface AppiumServer {
  * This functions start a current Server over commando line.
  *
  **/
-public void runSever();
+public void startServer();
 
 
 /**

@@ -10,7 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
@@ -101,14 +103,17 @@ public void setup() throws Exception {
 
 
 	DesiredCapabilities capabilities = new DesiredCapabilities();
-	capabilities.setCapability("appium-version", "1.37");
-	capabilities.setCapability("platformName", "Android");
-	capabilities.setCapability("platformVersion", "4.4.2");
-	capabilities.setCapability("deviceName", "20715382");
+//	capabilities.setCapability("appium-version", "1.37");
+	capabilities.setCapability(CapabilityType.PLATFORM, Platform.ANDROID);
+	capabilities.setCapability(CapabilityType.VERSION, "4.4.2");
+	//capabilities.setCapability("deviceName", "20715382");
+	//capabilities.setCapability("deviceName", "06510ebe170ef362");
+	//capabilities.setCapability("deviceName", "Note3");
+	capabilities.setCapability("deviceName", "G Flex");
 	capabilities.setCapability("app", "/Users/tecdesdev/Desktop/Appium/wetterinfo_aligned.apk");
 	capabilities.setCapability("appPackage", "com.telekom.wetterinfo");
 	//capabilities.setCapability("appActivity", ".app.DialogActivity");
-	wd = new AndroidDriver(new URL("http://127.0.0.1:5555/wd/hub"), capabilities);
+	wd = new AndroidDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
 	wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 }
 
@@ -142,7 +147,7 @@ public void addCity() {
 }
 
 
-@Test
+//@Test
 public void aktuelleStandort() {
 	WebElement element = wd.findElement(By.id("com.telekom.wetterinfo:id/locations_overview_fragment_empty_view_location_button"));
 	element.click();
