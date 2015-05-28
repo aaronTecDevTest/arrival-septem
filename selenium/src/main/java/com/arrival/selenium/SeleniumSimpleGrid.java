@@ -38,6 +38,7 @@ public SeleniumSimpleGrid() {
 	gridHubConfig = new GridHubConfiguration();
 	hubHost = "localhost";
 	hubPort = 4444;
+	osName = System.getProperty("os.name");
 
 	if (osName.contains("Mac OS X")) {
 		System.setProperty("webdriver.chrome.driver", "../arrival-septem/selenium/src/main/resources/chromedriver");
@@ -104,7 +105,6 @@ public void runHubNode() {
 	try {
 		setUpHub();
 		startRequest();
-		setUpNode();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

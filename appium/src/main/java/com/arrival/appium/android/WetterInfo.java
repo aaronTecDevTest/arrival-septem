@@ -101,14 +101,14 @@ public void setup() throws Exception {
 
 
 	DesiredCapabilities capabilities = new DesiredCapabilities();
-	capabilities.setCapability("appium-version", "1.0");
+	capabilities.setCapability("appium-version", "1.37");
 	capabilities.setCapability("platformName", "Android");
-	capabilities.setCapability("platformVersion", "4.4");
+	capabilities.setCapability("platformVersion", "4.4.2");
 	capabilities.setCapability("deviceName", "20715382");
 	capabilities.setCapability("app", "/Users/tecdesdev/Desktop/Appium/wetterinfo_aligned.apk");
 	capabilities.setCapability("appPackage", "com.telekom.wetterinfo");
 	//capabilities.setCapability("appActivity", ".app.DialogActivity");
-	wd = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+	wd = new AndroidDriver(new URL("http://127.0.0.1:5555/wd/hub"), capabilities);
 	wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 }
 
@@ -198,7 +198,7 @@ public void aktuelleStandort() {
 */
 
 /**
- * Not testable funktions
+ * Not testable functions
  *
  * @throws InterruptedException
  */
