@@ -5,16 +5,18 @@ package com.arrival.appium.android;
  */
 
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -49,47 +51,51 @@ private static String __Navigation_Leiste_Impressum = "";
 private static String __Navigation_Leiste_wetterInfoMobil = "";
 private static String __Navigation_Leiste_wetterInfoFacebook = "";
 
-  /*
-  private static String __MeineOrte_Button_Aktuell			 	="";
-  private static String __MeineOrte_Button_Vorhersage 			="";
-  private static String __MeineOrte_Button_Radar				="";
-  private static String __MeineOrte_Text_Stadname 				="";
-  private static String __MeineOrte_Liste_Wetterdaten 			="";
-  private static String __MeineOrte_Liste_Buttons_Pfeile 		="";
-  private static String __MeineOrte_Liste_PullToReloadTextfeld 	="";
-  private static String __MeineOrte_View_DataView				="";
-  private static String __MeineOrte_View_DataView_List			="";
 
 
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_Buttton_Back			="";
-  private static String __Search_Leiste_Button_AktuellerStandort="";
-  private static String __Search_Leiste_List_CheckBox			="";
-  private static String __Search_Leiste_List_MoveButton			="";
-  private static String __Search_Leiste_List_Orte				="";
-  private static String __Search_Leiste_View_DataView			="";
+//@DataProvider(name = "driver",parallel = true)
+@DataProvider(name = "driver")
+public Object[][] createDriver() {
 
-  private static String __Wetterkarte_Button_Aktuell			 	="";
-  private static String __Wetterkarte_Button_Morgen 			="";
-  private static String __Wetterkarte_B_Übermorgen			="";
-  private static String __MeineOrte_Text_Stadname 				="";
-  private static String __MeineOrte_Liste_Wetterdaten 			="";
-  private static String __MeineOrte_Liste_Buttons_Pfeile 		="";
-  private static String __MeineOrte_Liste_PullToReloadTextfeld 	="";
-  private static String __MeineOrte_View_DataView				="";
-  private static String __MeineOrte_View_DataView_List			="";
+	AndroidDriver tempWD1 = null;
+	AndroidDriver tempWD2=  null;
 
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";
-  private static String __Search_Leiste_TextFeld_PLZOrt			="";*/
+	try {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.PLATFORM, Platform.ANDROID);
+		capabilities.setCapability(CapabilityType.VERSION, "4.4.2");
+		capabilities.setCapability("udid", "20715382");
+		capabilities.setCapability("deviceName", "Note3");
+		capabilities.setCapability("app", "/Users/tecdesdev/Desktop/Appium/wetterinfo_aligned.apk");
+		capabilities.setCapability("appPackage", "com.telekom.wetterinfo");
+		 tempWD1 = new AndroidDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
+		tempWD1.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	} catch (MalformedURLException e) {
+		e.printStackTrace();
+	}
 
-@Before
+	try {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.PLATFORM, Platform.ANDROID);
+		capabilities.setCapability(CapabilityType.VERSION, "4.4.2");
+		capabilities.setCapability("udid", "06510ebe170ef362");
+		capabilities.setCapability("deviceName", "G Flex");
+		capabilities.setCapability("app", "/Users/tecdesdev/Desktop/Appium/wetterinfo_aligned.apk");
+		capabilities.setCapability("appPackage", "com.telekom.wetterinfo");
+		 tempWD2 = new AndroidDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
+		tempWD2.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	} catch (MalformedURLException e) {
+		e.printStackTrace();
+	}
+
+	Object[][] tempDriver = new Object[][]{{ "20715382", tempWD1 }, { "06510ebe170ef362", tempWD2}};
+
+	return tempDriver;
+}
+
+
+
+@BeforeTest
 public void setup() throws Exception {
     /*File appDir = new File("/Users/hendriklohrum/Desktop/Appium");
     File app = new File(appDir, "wetterinfo_aligned.apk");
@@ -101,28 +107,28 @@ public void setup() throws Exception {
     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
     wd = new AndroidDriver(new URL(url), capabilities);*/
 
-
+/*
 	DesiredCapabilities capabilities = new DesiredCapabilities();
 //	capabilities.setCapability("appium-version", "1.37");
 	capabilities.setCapability(CapabilityType.PLATFORM, Platform.ANDROID);
 	capabilities.setCapability(CapabilityType.VERSION, "4.4.2");
-	//capabilities.setCapability("deviceName", "20715382");
-	//capabilities.setCapability("deviceName", "06510ebe170ef362");
-	//capabilities.setCapability("deviceName", "Note3");
-	capabilities.setCapability("deviceName", "G Flex");
+	capabilities.setCapability("udid", "20715382");
+	capabilities.setCapability("deviceName", "Note3");
+	//capabilities.setCapability("udid", "06510ebe170ef362");
+	//capabilities.setCapability("deviceName", "G Flex");
 	capabilities.setCapability("app", "/Users/tecdesdev/Desktop/Appium/wetterinfo_aligned.apk");
 	capabilities.setCapability("appPackage", "com.telekom.wetterinfo");
 	//capabilities.setCapability("appActivity", ".app.DialogActivity");
 	wd = new AndroidDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
-	wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);*/
+
 }
 
 
-@After
+@AfterTest
 public void tearDown() throws Exception {
 	wd.quit();
 }
-
 
 
  /* @Test
@@ -132,8 +138,10 @@ public void tearDown() throws Exception {
 	  WebElement element = wd.findElement(By.id("com.telekom.wetterinfo:id/main_activity_content_frame"));
   }*/
 
-@Test
-public void addCity() {
+@Test(dataProvider = "driver", description = "Add a new City in App WetterInfo")
+public void addCity(String udid, AndroidDriver ad) {
+
+	wd = ad;
 	WebElement element = wd.findElement(By.id("com.telekom.wetterinfo:id/locations_overview_fragment_empty_view_search_button"));
 	// assertEquals("Ort/PLZ suchen", element.getTagName());
 	element.click();
@@ -239,4 +247,3 @@ public void swipeRigthToLeft() {
 	((JavascriptExecutor) wd).executeScript("mobile: swipe", swipeObject);
 }
 }
-

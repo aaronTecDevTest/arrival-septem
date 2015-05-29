@@ -28,7 +28,7 @@ public void restartSever();
 
 /**
  * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
- *  * @param JSONFilePath -> The Path where the file exicte.
+ *  * @param JSONFilePath -> The Path where the file existe.
  */
 public void runServerWithJSON( String JSONFilePath);
 

@@ -82,7 +82,7 @@ private void createNewDirectory(String directoryPath) {
 	boolean success = dir.mkdir();
 
 	if (!success)
-		System.out.println("Directory creation failed1");
+		System.out.println("Directory creation failed");
 	else
 		System.out.println("Directory creation success");
 }
