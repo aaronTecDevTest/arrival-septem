@@ -155,8 +155,9 @@ public void addCity(String udid, AndroidDriver ad) {
 }
 
 
-//@Test
-public void aktuelleStandort() {
+@Test(dataProvider = "driver", description = "Add current City in App WetterInfo")
+public void aktuelleStandort(String udid, AndroidDriver ad) {
+	wd = ad;
 	WebElement element = wd.findElement(By.id("com.telekom.wetterinfo:id/locations_overview_fragment_empty_view_location_button"));
 	element.click();
 	WebElement element1 = wd.findElement(By.id("com.telekom.wetterinfo:id/application_alert_dialog_positive_button"));
@@ -227,7 +228,7 @@ public void pauseTest(int millisec) {
 
 //@Test
 public void swipeLeftToRight() throws InterruptedException {
-	aktuelleStandort();
+	//aktuelleStandort();
 	WebElement element1 = wd.findElement(By.xpath("/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget."
 			                                              + "RelativeLayout[1]/android.widget.RelativeLayout[2]/android"
 			                                              + ".view.View[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]"));
