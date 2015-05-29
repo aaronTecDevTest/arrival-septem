@@ -48,7 +48,8 @@ public class RunAppiumTestCasteOnGridWithTNG {
 
 	private void createVirtualSuite() {
 		suite.setName("TmpSuite");
-		suite.setParallel("methods");
+		//suite.setParallel("methods");
+		suite.setParallel("tests");
 		suite.setThreadCount(5);
 		testXML.setName("TmpTest");
 
