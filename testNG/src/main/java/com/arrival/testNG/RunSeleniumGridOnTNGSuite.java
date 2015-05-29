@@ -24,6 +24,8 @@ public class RunSeleniumGridOnTNGSuite {
 XmlSuite suite = new XmlSuite();
 List<XmlSuite> suites = new ArrayList<>();
 
+
+
 TestNG tng = new TestNG();
 List<XmlClass> classes = new ArrayList<>();
 
