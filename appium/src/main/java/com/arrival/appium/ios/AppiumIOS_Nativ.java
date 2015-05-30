@@ -37,16 +37,16 @@ import static org.junit.Assert.*;
  */
 public class AppiumIOS_Nativ {
 
-File appDir = new File("/Users/hendriklohrum/Desktop/Appium");
-File app = new File(appDir, "AppiumIOS_WetterInfo_Live.app");//wetter.info.ipa/AppiumIOS_WetterInfo_Live.app
-//private AppiumDriver driver;
-private IOSDriver driver;
-private WebElement row;
+    File appDir = new File("/Users/hendriklohrum/Desktop/Appium");
+    File app = new File(appDir, "AppiumIOS_WetterInfo_Live.app");//wetter.info.ipa/AppiumIOS_WetterInfo_Live.app
+    //private AppiumDriver driver;
+    private IOSDriver driver;
+    private WebElement row;
 
-@Before
-public void setUp() throws Exception {
-	// set up appium
-	// File classpathRoot = new File(System.getProperty("user.dir"));
+    @Before
+    public void setUp() throws Exception {
+        // set up appium
+        // File classpathRoot = new File(System.getProperty("user.dir"));
 
         /*
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -60,189 +60,189 @@ public void setUp() throws Exception {
         driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);*/
 
 
-	//Run in a iOS-Devices
-	DesiredCapabilities capabilities = new DesiredCapabilities();
-	capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
-	capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone-Test-6");
-	capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.2");
-	capabilities.setCapability("udid", "22d337b9a379a10c6a03fff6ef8c4f25d09defc7");
-	capabilities.setCapability("bundleid", "com.example.apple-samplecode.AppiumIOS_WetterInfo_Live");
-	capabilities.setCapability("app", app.getAbsolutePath());
-	driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-}
+        //Run in a iOS-Devices
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone-Test-6");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.2");
+        capabilities.setCapability("udid", "22d337b9a379a10c6a03fff6ef8c4f25d09defc7");
+        capabilities.setCapability("bundleid", "com.example.apple-samplecode.AppiumIOS_WetterInfo_Live");
+        capabilities.setCapability("app", app.getAbsolutePath());
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    }
 
-@After
-public void tearDown() throws Exception {
-	Thread.sleep(10000);
-	driver.quit();
-}
+    @After
+    public void tearDown() throws Exception {
+        Thread.sleep(10000);
+        driver.quit();
+    }
 
-@Test
-public void test() throws Exception {
-	assertTrue(true);
+    @Test
+    public void test() throws Exception {
+        assertTrue(true);
 
-}
+    }
 
-private void openMenuPosition(int index) {
-	//populate text fields with two random number
-	//MobileElement table = new MobileElement((RemoteWebElement)driver.findElementByClassName("UIATableView"), driver);
-	MobileElement table = (MobileElement) driver.findElementByClassName("UIATableView");
-	row = table.findElementsByClassName("UIATableCell").get(index);
-	row.click();
-}
+    private void openMenuPosition(int index) {
+        //populate text fields with two random number
+        //MobileElement table = new MobileElement((RemoteWebElement)driver.findElementByClassName("UIATableView"), driver);
+        MobileElement table = (MobileElement) driver.findElementByClassName("UIATableView");
+        row = table.findElementsByClassName("UIATableCell").get(index);
+        row.click();
+    }
 
-private Point getCenter(WebElement element) {
+    private Point getCenter(WebElement element) {
 
-	Point upperLeft = element.getLocation();
-	Dimension dimensions = element.getSize();
-	return new Point(upperLeft.getX() + dimensions.getWidth() / 2, upperLeft.getY() + dimensions.getHeight() / 2);
-}
+        Point upperLeft = element.getLocation();
+        Dimension dimensions = element.getSize();
+        return new Point(upperLeft.getX() + dimensions.getWidth() / 2, upperLeft.getY() + dimensions.getHeight() / 2);
+    }
 
-@Test
-public void testFindElement() throws Exception {
-	//first view in AppiumIOS_WetterInfo_Live is a table
-	//MobileElement table = new MobileElement((RemoteWebElement)driver.findElementByClassName("UIATableView"), driver);
-	MobileElement table = (MobileElement) driver.findElementByClassName("UIATableView");
-	assertNotNull(table);
-	//is number of cells/rows inside table correct
-	List<WebElement> rows = table.findElementsByClassName("UIATableCell");
-	assertEquals(12, rows.size());
-	//is first one about buttons
-	assertEquals("Buttons, Various uses of UIButton", rows.get(0).getAttribute("name"));
-	//navigationBar is not inside table
-	WebElement nav_bar = null;
-	try {
-		nav_bar = table.findElementByClassName("UIANavigationBar");
-	} catch (NoSuchElementException e) {
-		//expected
-	}
-	assertNull(nav_bar);
-	//there is nav bar inside the app
-	driver.getPageSource();
-	nav_bar = driver.findElementByClassName("UIANavigationBar");
-	assertNotNull(nav_bar);
-}
+    @Test
+    public void testFindElement() throws Exception {
+        //first view in AppiumIOS_WetterInfo_Live is a table
+        //MobileElement table = new MobileElement((RemoteWebElement)driver.findElementByClassName("UIATableView"), driver);
+        MobileElement table = (MobileElement) driver.findElementByClassName("UIATableView");
+        assertNotNull(table);
+        //is number of cells/rows inside table correct
+        List<WebElement> rows = table.findElementsByClassName("UIATableCell");
+        assertEquals(12, rows.size());
+        //is first one about buttons
+        assertEquals("Buttons, Various uses of UIButton", rows.get(0).getAttribute("name"));
+        //navigationBar is not inside table
+        WebElement nav_bar = null;
+        try {
+            nav_bar = table.findElementByClassName("UIANavigationBar");
+        } catch (NoSuchElementException e) {
+            //expected
+        }
+        assertNull(nav_bar);
+        //there is nav bar inside the app
+        driver.getPageSource();
+        nav_bar = driver.findElementByClassName("UIANavigationBar");
+        assertNotNull(nav_bar);
+    }
 
 
-@Test
-public void test_location() {
-	//get third row location
-	row = driver.findElementsByClassName("UIATableCell").get(2);
-	assertEquals(0, row.getLocation().getX());
-	assertEquals(152, row.getLocation().getY());
-}
+    @Test
+    public void test_location() {
+        //get third row location
+        row = driver.findElementsByClassName("UIATableCell").get(2);
+        assertEquals(0, row.getLocation().getX());
+        assertEquals(152, row.getLocation().getY());
+    }
 
-@Test
-public void testScreenshot() {
-	//make screenshot and get is as base64
-	WebDriver augmentedDriver = new Augmenter().augment(driver);
-	String screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BASE64);
+    @Test
+    public void testScreenshot() {
+        //make screenshot and get is as base64
+        WebDriver augmentedDriver = new Augmenter().augment(driver);
+        String screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BASE64);
 
-	assertNotNull(screenshot);
-	//make screenshot and save it to the local filesystem
-	File file = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
-	// Files.write(appDir, file.,Charset.forName("UTF-8") ,StandardOpenOption.WRITE);
+        assertNotNull(screenshot);
+        //make screenshot and save it to the local filesystem
+        File file = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+        // Files.write(appDir, file.,Charset.forName("UTF-8") ,StandardOpenOption.WRITE);
 
-	assertNotNull(file);
-}
+        assertNotNull(file);
+    }
 
-@Test
-public void testTextFieldEdit() {
-	//go to the text fields section
-	openMenuPosition(2);
-	WebElement text_field = driver.findElementsByClassName("UIATextField").get(0);
-	//get default/empty text
-	String default_val = text_field.getAttribute("value");
-	//write some random text to element
-	String rnd_string = RandomStringUtils.randomAlphanumeric(6);
-	text_field.sendKeys(rnd_string);
-	assertEquals(rnd_string, text_field.getAttribute("value"));
-	//send some random keys
-	String rnd_string2 = RandomStringUtils.randomAlphanumeric(6);
-	Actions swipe = new Actions(driver).sendKeys(rnd_string2);
-	swipe.perform();
-	//check if text is there
-	assertEquals(rnd_string + rnd_string2, text_field.getAttribute("value"));
-	//clear
-	text_field.clear();
-	//check if is empty/has default text
-	assertEquals(default_val, text_field.getAttribute("value"));
-}
+    @Test
+    public void testTextFieldEdit() {
+        //go to the text fields section
+        openMenuPosition(2);
+        WebElement text_field = driver.findElementsByClassName("UIATextField").get(0);
+        //get default/empty text
+        String default_val = text_field.getAttribute("value");
+        //write some random text to element
+        String rnd_string = RandomStringUtils.randomAlphanumeric(6);
+        text_field.sendKeys(rnd_string);
+        assertEquals(rnd_string, text_field.getAttribute("value"));
+        //send some random keys
+        String rnd_string2 = RandomStringUtils.randomAlphanumeric(6);
+        Actions swipe = new Actions(driver).sendKeys(rnd_string2);
+        swipe.perform();
+        //check if text is there
+        assertEquals(rnd_string + rnd_string2, text_field.getAttribute("value"));
+        //clear
+        text_field.clear();
+        //check if is empty/has default text
+        assertEquals(default_val, text_field.getAttribute("value"));
+    }
 
-@Test
-public void testAlertInteraction() {
-	//go to the alerts section
-	openMenuPosition(10);
+    @Test
+    public void testAlertInteraction() {
+        //go to the alerts section
+        openMenuPosition(10);
 
-	//trigger modal alert with cancel & ok buttons
-	List<WebElement> triggerOkCancel = driver.findElementsByAccessibilityId("Show OK-Cancel");
-	triggerOkCancel.get(1).click();
-	Alert alert = driver.switchTo().alert();
-	//check if title of alert is correct
-	assertEquals("UIAlertView <Alert message>", alert.getText());
-	alert.accept();
-}
+        //trigger modal alert with cancel & ok buttons
+        List<WebElement> triggerOkCancel = driver.findElementsByAccessibilityId("Show OK-Cancel");
+        triggerOkCancel.get(1).click();
+        Alert alert = driver.switchTo().alert();
+        //check if title of alert is correct
+        assertEquals("UIAlertView <Alert message>", alert.getText());
+        alert.accept();
+    }
 
-@Test
-public void testScroll() {
-	//scroll menu
-	//get initial third row location
-	row = driver.findElementsByClassName("UIATableCell").get(2);
-	Point location1 = row.getLocation();
-	Point center = getCenter(row);
-	//perform swipe gesture
-	driver.swipe(center.getX(), center.getY(), center.getX(), center.getY() - 20, 1000);
-	//get new row coordinates
-	Point location2 = row.getLocation();
-	assertEquals(location1.getX(), location2.getX());
-	assertNotSame(location1.getY(), location2.getY());
-}
+    @Test
+    public void testScroll() {
+        //scroll menu
+        //get initial third row location
+        row = driver.findElementsByClassName("UIATableCell").get(2);
+        Point location1 = row.getLocation();
+        Point center = getCenter(row);
+        //perform swipe gesture
+        driver.swipe(center.getX(), center.getY(), center.getX(), center.getY() - 20, 1000);
+        //get new row coordinates
+        Point location2 = row.getLocation();
+        assertEquals(location1.getX(), location2.getX());
+        assertNotSame(location1.getY(), location2.getY());
+    }
 
-@Test
-public void testSlider() {
-	//go to controls
-	openMenuPosition(1);
-	//get the slider
-	WebElement slider = driver.findElementByClassName("UIASlider");
-	assertEquals("50%", slider.getAttribute("value"));
-	Point sliderLocation = getCenter(slider);
-	driver.swipe(sliderLocation.getX(), sliderLocation.getY(), sliderLocation.getX() - 100, sliderLocation.getY(), 1);
-	assertEquals("0%", slider.getAttribute("value"));
-}
+    @Test
+    public void testSlider() {
+        //go to controls
+        openMenuPosition(1);
+        //get the slider
+        WebElement slider = driver.findElementByClassName("UIASlider");
+        assertEquals("50%", slider.getAttribute("value"));
+        Point sliderLocation = getCenter(slider);
+        driver.swipe(sliderLocation.getX(), sliderLocation.getY(), sliderLocation.getX() - 100, sliderLocation.getY(), 1);
+        assertEquals("0%", slider.getAttribute("value"));
+    }
 
-@Test
-public void testSessions() throws Exception {
-	HttpGet request = new HttpGet("http://localhost:4723/wd/hub/sessions");
-	HttpClient httpClient = new DefaultHttpClient();//DefaultHttpClient();
-	HttpResponse response = httpClient.execute(request);
-	HttpEntity entity = response.getEntity();
-	JSONObject jsonObject = (JSONObject) new JSONParser().parse(EntityUtils.toString(entity));
+    @Test
+    public void testSessions() throws Exception {
+        HttpGet request = new HttpGet("http://localhost:4723/wd/hub/sessions");
+        HttpClient httpClient = new DefaultHttpClient();//DefaultHttpClient();
+        HttpResponse response = httpClient.execute(request);
+        HttpEntity entity = response.getEntity();
+        JSONObject jsonObject = (JSONObject) new JSONParser().parse(EntityUtils.toString(entity));
 
-	String sessionId = driver.getSessionId().toString();
-	assertEquals(jsonObject.get("sessionId"), sessionId);
-}
+        String sessionId = driver.getSessionId().toString();
+        assertEquals(jsonObject.get("sessionId"), sessionId);
+    }
 
-@Test
-public void testSize() {
-	Dimension table = driver.findElementByClassName("UIATableView").getSize();
-	Dimension cell = driver.findElementsByClassName("UIATableCell").get(0).getSize();
-	assertEquals(table.getWidth(), cell.getWidth());
-	assertNotSame(table.getHeight(), cell.getHeight());
-}
+    @Test
+    public void testSize() {
+        Dimension table = driver.findElementByClassName("UIATableView").getSize();
+        Dimension cell = driver.findElementsByClassName("UIATableCell").get(0).getSize();
+        assertEquals(table.getWidth(), cell.getWidth());
+        assertNotSame(table.getHeight(), cell.getHeight());
+    }
 
-@Test
-public void testSource() {
-	//get main view soruce
-	String source_main = driver.getPageSource();
-	assertTrue(source_main.contains("UIATableView"));
-	assertTrue(source_main.contains("TextFields, Uses of UITextField"));
+    @Test
+    public void testSource() {
+        //get main view soruce
+        String source_main = driver.getPageSource();
+        assertTrue(source_main.contains("UIATableView"));
+        assertTrue(source_main.contains("TextFields, Uses of UITextField"));
 
-	//got to text fields section
-	openMenuPosition(2);
-	String source_textfields = driver.getPageSource();
-	assertTrue(source_textfields.contains("UIAStaticText"));
-	assertTrue(source_textfields.contains("TextFields"));
+        //got to text fields section
+        openMenuPosition(2);
+        String source_textfields = driver.getPageSource();
+        assertTrue(source_textfields.contains("UIAStaticText"));
+        assertTrue(source_textfields.contains("TextFields"));
 
-	assertNotSame(source_main, source_textfields);
-}
+        assertNotSame(source_main, source_textfields);
+    }
 }

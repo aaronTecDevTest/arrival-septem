@@ -10,9 +10,9 @@ package com.arrival.appium;
  */
 public class Main {
 
-	public static void main(String[] args) {
-		SeleniumHub hub = new SeleniumHub();
-		hub.startHub();
+    public static void main(String[] args) {
+        SeleniumHub hub = new SeleniumHub();
+        hub.startHub();
 
-	}
+    }
 }

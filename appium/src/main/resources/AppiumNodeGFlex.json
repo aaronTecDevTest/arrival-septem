@@ -1,6 +1,5 @@
 {
-  "capabilities":
-  [
+  "capabilities": [
     {
       "browserName": "Android",
       "version": "4.4.2",
@@ -10,12 +9,11 @@
       "udid": "06510ebe170ef362"
     }
   ],
-  "configuration":
-  {
-    "cleanUpCycle":2000,
-    "timeout":30000,
+  "configuration": {
+    "cleanUpCycle": 2000,
+    "timeout": 30000,
     "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-    "url":"http://127.0.0.1:6666/wd/hub",
+    "url": "http://127.0.0.1:6666/wd/hub",
     "host": "127.0.0.1",
     "port": 6666,
     "maxSession": 20,
