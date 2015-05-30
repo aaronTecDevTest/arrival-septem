@@ -5,39 +5,40 @@ package com.arrival.appium.server;
  */
 
 
-public class AppiumIOS implements AppiumServer{
+public class AppiumIOS implements AppiumServer {
 
 
-/**
- * This functions start a current Server over commando line.
- **/
-@Override
-public void startServer() {
+    /**
+     * This functions start a current Server over commando line.
+     **/
+    @Override
+    public void startServer() {
 
-}
+    }
 
-/**
- * This functions start a current Server over commando line.
- **/
-@Override
-public void stopServer() {
+    /**
+     * This functions start a current Server over commando line.
+     **/
+    @Override
+    public void stopServer() {
 
-}
+    }
 
-/**
- * This functions Restart a current Server over commando line.
- **/
-@Override
-public void restartSever() {
+    /**
+     * This functions Restart a current Server over commando line.
+     **/
+    @Override
+    public void restartSever() {
 
-}
+    }
 
-/**
- * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
- * @param JSONFilePath -> The Path where the file exicte.
- */
-@Override
-public void runServerWithJSON(String JSONFilePath) {
+    /**
+     * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
+     *
+     * @param JSONFilePath -> The Path where the file exicte.
+     */
+    @Override
+    public void runServerWithJSON(String JSONFilePath) {
 
-}
+    }
 }
