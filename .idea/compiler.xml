@@ -45,11 +45,19 @@
         <processorPath useClasspath="true" />
         <module name="testNG" />
       </profile>
+      <profile default="false" name="Annotation profile for json" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="json" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="appium" target="1.8" />
       <module name="arrival-septem" target="1.8" />
       <module name="javaFX" target="1.8" />
+      <module name="json" target="1.8" />
       <module name="selenium" target="1.8" />
       <module name="testNG" target="1.8" />
     </bytecodeTargetLevel>
