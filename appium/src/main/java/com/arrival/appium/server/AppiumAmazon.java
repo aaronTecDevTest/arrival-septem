@@ -12,7 +12,6 @@ public class AppiumAmazon implements AppiumServer {
      **/
     @Override
     public void startServer() {
-
     }
 
     /**

@@ -1,5 +1,9 @@
 {
-  "domain":"www.javacodegeeks.com",
-  "members":200,
-  "names": ["Jack","James",3]
+  "domain": "www.javacodegeeks.com",
+  "members": 200,
+  "names": [
+    "Jack",
+    "James",
+    3
+  ]
 }

@@ -1,22 +1,20 @@
 {
-  "capabilities":
-  [
+  "capabilities": [
     {
       "browserName": "Android",
-      "version":"4.4.2",
+      "version": "4.4.2",
       "maxInstances": 3,
-      "platform":"ANDROID",
-      "deviceName":"G Flex",
+      "platform": "ANDROID",
+      "deviceName": "G Flex",
       "seleniumProtocol": "Selenium",
       "automationName": "Appium"
     }
   ],
-  "configuration":
-  {
-    "cleanUpCycle":2000,
-    "timeout":30000,
+  "configuration": {
+    "cleanUpCycle": 2000,
+    "timeout": 30000,
     "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-    "url":"http://127.0.0.1:6666/wd/hub",
+    "url": "http://127.0.0.1:6666/wd/hub",
     "host": "127.0.0.1",
     "port": 6666,
     "maxSession": 1,
@@ -33,20 +31,20 @@
 [
 {
 "browserName": "Android",
-"version":"4.4.2",
+"version": "4.4.2",
 "maxInstances": 3,
-"platform":"ANDROID",
-"deviceName":"Note3",
+"platform": "ANDROID",
+"deviceName": "Note3",
 "seleniumProtocol": "Selenium",
 "automationName": "Appium"
 }
 ],
 "configuration":
 {
-"cleanUpCycle":2000,
+"cleanUpCycle": 2000,
 "timeout":30000,
 "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-"url":"http://127.0.0.1:5555/wd/hub",
+"url": "http://127.0.0.1:5555/wd/hub",
 "host": "127.0.0.1",
 "port": 5555,
 "maxSession": 1,

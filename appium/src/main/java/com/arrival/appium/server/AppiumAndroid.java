@@ -6,18 +6,25 @@ import org.apache.commons.exec.DefaultExecutor;
 
 import java.io.IOException;
 
+
 /**
  * Created by tecdesdev on 26/05/15.
  */
 
 public class AppiumAndroid implements AppiumServer {
 
+    /**
+     * Standard Constructor
+     */
+    public AppiumAndroid() {
+
+    }
+
     public static void main(String[] args) throws IOException {
         AppiumAndroid androidServer = new AppiumAndroid();
         androidServer.lgServer();
         androidServer.note3Sever();
     }
-
 
     public void note3Sever() throws IOException {
         CommandLine command = new CommandLine("/Applications/Appium.app/Contents/Resources/node/bin/node");
@@ -55,14 +62,6 @@ public class AppiumAndroid implements AppiumServer {
         DefaultExecutor executor = new DefaultExecutor();
         executor.setExitValue(1);
         executor.execute(command, resultHandler);
-    }
-
-
-    /**
-     * Standard Constructor
-     */
-    public AppiumAndroid() {
-
     }
 
     /**

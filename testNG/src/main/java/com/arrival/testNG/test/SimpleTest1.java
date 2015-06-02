@@ -6,7 +6,8 @@ package com.arrival.testNG.test;
 
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 public class SimpleTest1 {
     private SimpleTest1 test;

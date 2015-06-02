@@ -134,7 +134,7 @@ public class Generic {
      *
      */
     public void pullToReload(AppiumDriver dr, WebElement e) {
-		/*Point startCenter = getCenter(e);
+        /*Point startCenter = getCenter(e);
 		Point endCenter = getCenter(e);
 		Dimension dimensions = e.getSize();
 		int endY = dimensions.getHeight()/4;

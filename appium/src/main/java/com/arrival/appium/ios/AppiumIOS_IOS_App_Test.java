@@ -66,7 +66,7 @@ public class AppiumIOS_IOS_App_Test {
             //or
             //you can set up appium in following manner - if you want to run on real device
             /*DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability("device", "iPhone");
+            capabilities.setCapability("device", "iPhone");
 			capabilities.setCapability("udid", "80644d3a823bb12fe012ea3e54223e00feef8097");
 			capabilities.setCapability("bundleid", "com.example.appiumiphonetest");
 			capabilities.setCapability("ipa", "App_iOS.ipa");

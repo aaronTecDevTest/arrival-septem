@@ -72,7 +72,7 @@ public class RunCreateTNGSuite {
         File dir = new File(directoryPath);
         boolean success = dir.mkdir();
 
-        if (! success)
+        if (!success)
             System.out.println("Directory creation failed1");
         else
             System.out.println("Directory creation success");

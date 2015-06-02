@@ -81,7 +81,7 @@ public class RunSeleniumGridOnTNGSuite {
         File dir = new File(directoryPath);
         boolean success = dir.mkdir();
 
-        if (! success)
+        if (!success)
             System.out.println("Directory creation failed");
         else
             System.out.println("Directory creation success");

@@ -34,7 +34,7 @@ public class AppiumIOS_Test_All_Generic_Functions extends Generic {
         File app = new File(appDir, "UICatalog_new.app");
 
 	    /*
-	     //Run in a Simulator
+         //Run in a Simulator
 	    DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
 	    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.1");
