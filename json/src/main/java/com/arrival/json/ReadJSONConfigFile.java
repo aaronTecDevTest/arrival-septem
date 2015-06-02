@@ -66,6 +66,6 @@ public class ReadJSONConfigFile {
     public void setConfigList(ArrayList<NodeConfig> configList) {
         this.configList = configList;
     }
-
+//http://www.journaldev.com/2321/google-gson-api-for-json-processing-example-tutorial
 
 }
