@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -38,12 +40,16 @@ public class ReadJSONConfigFile {
         // parse json string to object
         NodeConfig node = gson.fromJson(fileData, NodeConfig.class);
 
+
+        System.out.println(node.getConfiguration().getCleanUpCycle());
+        System.out.println(node.getConfiguration().getCleanUpCycle());
+
+        System.out.println(node.getSingelCapabiites().getBrowserName());
+
+        System.out.println(node.getSingelCapabiites().getBrowserName());
         // print object data
         System.out.println("\n\nEmployee Object\n\n" + node);
 
-        // create JSON String from Object
-        //String jsonEmp = gson.toJson(emp);
-        //System.out.print(jsonEmp);
     }
 
     ReadJSONConfigFile() {

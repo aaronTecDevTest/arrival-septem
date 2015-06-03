@@ -1,40 +1,46 @@
 package com.arrival.json.model;
 
-import java.util.List;
-import java.util.Map;
-
-
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by tecdesdev on 02/06/15.
  */
 public class NodeConfig {
 
-    @SerializedName("")
-    private Map<String,String> capabilities;
-    private Map<String, String> configuration;
 
-    public Map<String,String> getCities() {
+
+    @SerializedName("capabilities")
+    private Capabilities[] capabilities;
+    private Configuration configuration;
+
+    public Capabilities[] getCapabilities() {
         return capabilities;
     }
 
-    public void setCities(Map<String,String> capabilities) {
+    public void setCapabilities(Capabilities[] capabilities) {
         this.capabilities = capabilities;
     }
 
-    public Map<String, String> getProperties() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 
-    public void setProperties(Map<String, String> properties) {
-        this.configuration = properties;
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    public Capabilities getSingelCapabiites(){
+        return capabilities[0];
     }
 
     @Override
     public String toString() {
-        return "NodeConfig:{" +
-                       "cities=" + capabilities.toString() +
-                       ", properties=" + configuration.toString() +
+        return "NodeConfig{" +
+                       "capabilities=" + Arrays.toString(capabilities) +
+                       ", configuration=" + configuration +
                        '}';
     }
 }
