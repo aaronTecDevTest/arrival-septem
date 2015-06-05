@@ -11,36 +11,27 @@ import java.util.ArrayList;
  */
 public class DirectoryReader {
 
-    public static final String jsonConfigDirectory = "../arrival-septem/json/src/main/resources";
-    public ArrayList<Path> jsonConfigFiles = null;
-
+    public static final String jsonConfigDirectory = "../arrival-septem/appium/src/main/resources";
+    public ArrayList<Path> pathList = null;
 
     public DirectoryReader() {
-        jsonConfigFiles = new ArrayList<>();
-        jsonConfigFiles = readDirectory();
-    }
-
-
-    public DirectoryReader(String filePath) {
-        jsonConfigFiles = new ArrayList<>();
-        jsonConfigFiles = readDirectory(filePath);
+        pathList = new ArrayList<>();
+        pathList = readDirectory();
     }
 
     /**
-     * Main for testing/run Class: DirectoryReader
      *
-     * @param args
+     * @param filesPath DirectoryPath where the json File are.
      */
-    public static void main(String[] args) {
-        DirectoryReader jsonReader = new DirectoryReader("../arrival-septem/appium/src/main/resources");
-        System.out.println(jsonReader.getJsonConfigFiles());
+    public DirectoryReader(String filesPath) {
+        pathList = new ArrayList<>();
     }
 
-    public static String getJsonConfigDirectory() {
+    public String getJsonConfigDirectory() {
         return jsonConfigDirectory;
     }
 
-    public ArrayList<Path> readDirectory() {
+    private ArrayList<Path> readDirectory() {
         final ArrayList<Path> jsonConfigTemp = new ArrayList<>();
 
         try {
@@ -55,9 +46,8 @@ public class DirectoryReader {
         return getOnlyJsonPath(jsonConfigTemp);
     }
 
-    public ArrayList<Path> readDirectory(String jsonConfigDirectory) {
+    private ArrayList<Path> readDirectory(String jsonConfigDirectory) {
         final ArrayList<Path> jsonConfigTemp = new ArrayList<>();
-
         try {
             Files.walk(Paths.get(jsonConfigDirectory)).forEach(filePath -> {
                 if (Files.isRegularFile(filePath)) {
@@ -70,13 +60,6 @@ public class DirectoryReader {
         return getOnlyJsonPath(jsonConfigTemp);
     }
 
-    public ArrayList<Path> getJsonConfigFiles() {
-        return jsonConfigFiles;
-    }
-
-    private void setJsonConfigFiles(ArrayList<Path> jsonConfigFiles) {
-        this.jsonConfigFiles = jsonConfigFiles;
-    }
 
     private ArrayList<Path> getOnlyJsonPath(ArrayList<Path> allPath) {
         ArrayList<Path> temp = new ArrayList<>();
@@ -89,4 +72,12 @@ public class DirectoryReader {
         }
         return temp;
     }
+
+    public ArrayList<Path> getPathList() {
+        return pathList;
+    }
+
+   /* public void setJsonConfigFiles(ArrayList<Path> pathList) {
+        this.pathList = pathList;
+    }*/
 }

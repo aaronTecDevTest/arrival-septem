@@ -12,7 +12,6 @@ import org.openqa.grid.web.Hub;
 //Todo: Should be a Singelton Class
 public class SeleniumHub {
 
-    private String osName;
     private GridHubConfiguration gridHubConfig;
     private Hub hub;
     private String hubHost;
@@ -23,7 +22,6 @@ public class SeleniumHub {
         gridHubConfig = new GridHubConfiguration();
         hubHost = "localhost";
         hubPort = 4444;
-        osName = System.getProperty("os.name");
         setUpHub();
     }
 
@@ -31,8 +29,6 @@ public class SeleniumHub {
         gridHubConfig = new GridHubConfiguration();
         hubHost = host;
         hubPort = port;
-        osName = System.getProperty("os.name");
-
     }
 
     public static void main(String[] args) {
@@ -74,15 +70,6 @@ public class SeleniumHub {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-    public String getOsName() {
-        return osName;
-    }
-
-    public void setOsName(String osName) {
-        this.osName = osName;
     }
 
     public GridHubConfiguration getGridHubConfig() {

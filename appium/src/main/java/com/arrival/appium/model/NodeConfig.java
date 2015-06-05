@@ -1,4 +1,4 @@
-package com.arrival.json.model;
+package com.arrival.appium.model;
 
 import com.google.gson.annotations.SerializedName;
 

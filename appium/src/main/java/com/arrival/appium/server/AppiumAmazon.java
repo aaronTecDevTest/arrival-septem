@@ -6,7 +6,6 @@ package com.arrival.appium.server;
 
 public class AppiumAmazon implements AppiumServer {
 
-
     /**
      * This functions start a current Server over commando line.
      **/

@@ -1,9 +1,13 @@
 package com.arrival.appium.server;
 
+import com.arrival.appium.model.NodeConfig;
+
 /**
  * Created by tecdesdev on 26/05/15.
  */
 public interface AppiumServer {
+
+    public NodeConfig nodeConfig=null;
 
     /**
      * This functions start a current Server over commando line.
