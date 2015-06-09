@@ -1,5 +1,9 @@
 package com.arrival.appium.server;
 
+import com.arrival.appium.model.NodeConfig;
+
+import java.nio.file.Path;
+
 /**
  * Created by tecdesdev on 26/05/15.
  */
@@ -7,6 +11,18 @@ package com.arrival.appium.server;
 
 public class AppiumIOS implements AppiumServer {
 
+
+    public AppiumIOS(NodeConfig nodeConfig) {
+
+    }
+
+    public void startIOSWebKitProxy(){
+
+    }
+
+    public void stopIOSWebKitProxy(){
+
+    }
 
     /**
      * This functions start a current Server over commando line.
@@ -21,7 +37,6 @@ public class AppiumIOS implements AppiumServer {
      **/
     @Override
     public void stopServer() {
-
     }
 
     /**
@@ -38,7 +53,7 @@ public class AppiumIOS implements AppiumServer {
      * @param JSONFilePath -> The Path where the file exicte.
      */
     @Override
-    public void runServerWithJSON(String JSONFilePath) {
+    public void runServerWithJSON(Path JSONFilePath) {
 
     }
 }

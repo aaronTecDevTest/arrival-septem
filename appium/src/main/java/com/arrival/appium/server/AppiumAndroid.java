@@ -1,10 +1,12 @@
 package com.arrival.appium.server;
 
+import com.arrival.appium.model.NodeConfig;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 
 /**
@@ -13,13 +15,21 @@ import java.io.IOException;
 
 public class AppiumAndroid implements AppiumServer {
 
+    private NodeConfig nodeConfig;
+    private static String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
+    private static String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
+
     /**
      * Standard Constructor
      */
     public AppiumAndroid() {
-
+        nodeConfig = null;
     }
 
+    public AppiumAndroid(NodeConfig nodeConfig) {
+        this.nodeConfig = nodeConfig;
+    }
+/*
     public static void main(String[] args) throws IOException {
         AppiumAndroid androidServer = new AppiumAndroid();
         androidServer.lgServer();
@@ -55,8 +65,7 @@ public class AppiumAndroid implements AppiumServer {
         command.addArgument("6666");
         command.addArgument("--nodeconfig");
         command.addArgument("/Users/tecdesdev/IdeaProjects/arrival-septem/appium/src/main/resources/AppiumNodeGFlex.json");
-
-//	command.addArgument("--no-reset");
+    	command.addArgument("--no-reset");
 
         DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
         DefaultExecutor executor = new DefaultExecutor();
@@ -69,7 +78,23 @@ public class AppiumAndroid implements AppiumServer {
      **/
     @Override
     public void startServer() {
+        try{
+            CommandLine command = new CommandLine(nodePath);
+            command.addArgument(appiumPath);
+            command.addArgument("--address");
+            command.addArgument(nodeConfig.getConfiguration().getHost());//("127.0.0.1");
+            command.addArgument("--port");
+            command.addArgument(nodeConfig.getConfiguration().getPort().toString());//("5555");
+            command.addArgument("--nodeconfig");
+            command.addArgument(nodeConfig.getConfigPath().toString());//("/Users/tecdesdev/IdeaProjects/arrival-septem/appium/src/main/resources/AppiumNodeNote3.json");
 
+            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+            DefaultExecutor executor = new DefaultExecutor();
+            executor.setExitValue(1);
+            executor.execute(command, resultHandler);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -93,7 +118,7 @@ public class AppiumAndroid implements AppiumServer {
      * * @param JSONFilePath -> The Path where the file existe.
      */
     @Override
-    public void runServerWithJSON(String JSONFilePath) {
-
+    public void runServerWithJSON(Path JSONFilePath) {
+        nodeConfig.setConfigPath(JSONFilePath);
     }
 }

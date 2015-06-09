@@ -1,10 +1,18 @@
 package com.arrival.appium.server;
 
+import com.arrival.appium.model.NodeConfig;
+
+import java.nio.file.Path;
+
 /**
  * Created by tecdesdev on 26/05/15.
  */
 
 public class AppiumAmazon implements AppiumServer {
+
+    public AppiumAmazon(NodeConfig nodeConfig) {
+
+    }
 
     /**
      * This functions start a current Server over commando line.
@@ -34,7 +42,7 @@ public class AppiumAmazon implements AppiumServer {
      * * @param JSONFilePath -> The Path where the file existe.
      */
     @Override
-    public void runServerWithJSON(String JSONFilePath) {
+    public void runServerWithJSON(Path JSONFilePath) {
 
     }
 }

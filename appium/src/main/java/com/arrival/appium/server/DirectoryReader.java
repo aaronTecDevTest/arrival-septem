@@ -11,7 +11,8 @@ import java.util.ArrayList;
  */
 public class DirectoryReader {
 
-    public static final String jsonConfigDirectory = "../arrival-septem/appium/src/main/resources";
+    //public static final String jsonConfigDirectory = "../arrival-septem/appium/src/main/resources";
+    public static final String jsonConfigDirectory = "/Users/tecdesdev/IdeaProjects/arrival-septem/appium/src/main/resources";
     public ArrayList<Path> pathList = null;
 
     public DirectoryReader() {

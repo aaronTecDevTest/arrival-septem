@@ -103,5 +103,4 @@ public class SeleniumHub {
     public void setHubPort(Integer hubPort) {
         this.hubPort = hubPort;
     }
-
 }

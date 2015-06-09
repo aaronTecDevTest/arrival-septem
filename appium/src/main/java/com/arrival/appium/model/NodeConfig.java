@@ -2,6 +2,7 @@ package com.arrival.appium.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Arrays;
  */
 public class NodeConfig {
 
-
+    private Path configPath;
 
     @SerializedName("capabilities")
     private Capabilities[] capabilities;
@@ -33,6 +34,13 @@ public class NodeConfig {
 
     public Capabilities getSingelCapabiites(){
         return capabilities[0];
+    }
+    public Path getConfigPath() {
+        return configPath;
+    }
+
+    public void setConfigPath(Path configPath) {
+        this.configPath = configPath;
     }
 
     @Override
