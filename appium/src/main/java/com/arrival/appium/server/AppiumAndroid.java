@@ -82,12 +82,11 @@ public class AppiumAndroid implements AppiumServer {
             CommandLine command = new CommandLine(nodePath);
             command.addArgument(appiumPath);
             command.addArgument("--address");
-            command.addArgument(nodeConfig.getConfiguration().getHost());//("127.0.0.1");
+            command.addArgument(nodeConfig.getConfiguration().getHost());
             command.addArgument("--port");
-            command.addArgument(nodeConfig.getConfiguration().getPort().toString());//("5555");
+            command.addArgument(nodeConfig.getConfiguration().getPort().toString());
             command.addArgument("--nodeconfig");
-            command.addArgument(nodeConfig.getConfigPath().toString());//("/Users/tecdesdev/IdeaProjects/arrival-septem/appium/src/main/resources/AppiumNodeNote3.json");
-
+            command.addArgument(nodeConfig.getConfigPath().toString());
             DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
             DefaultExecutor executor = new DefaultExecutor();
             executor.setExitValue(1);
