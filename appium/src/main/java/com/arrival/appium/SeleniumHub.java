@@ -2,6 +2,8 @@ package com.arrival.appium;
 
 import org.openqa.grid.internal.utils.GridHubConfiguration;
 import org.openqa.grid.web.Hub;
+import org.openqa.grid.internal.Registry;
+
 
 
 /**

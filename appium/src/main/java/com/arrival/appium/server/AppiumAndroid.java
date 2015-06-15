@@ -97,7 +97,7 @@ public class AppiumAndroid implements AppiumServer {
     }
 
     /**
-     * This functions start a current Server over commando line.
+     * This functions stop a current Server over commando line.
      **/
     @Override
     public void stopServer() {
