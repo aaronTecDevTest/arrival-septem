@@ -1,6 +1,7 @@
 package com.arrival.appium.android;
 
 /**
+ *
  * Created by Aaron Kutekidila  on 21/05/15.
  */
 
@@ -58,6 +59,7 @@ public class WetterInfo {
 
         AndroidDriver tempWD1 = null;
         AndroidDriver tempWD2 = null;
+        AndroidDriver tempWD3 = null;
 
         try {
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -87,7 +89,25 @@ public class WetterInfo {
             e.printStackTrace();
         }
 
-        Object[][] tempDriver = new Object[][]{{"20715382", tempWD1}, {"06510ebe170ef362", tempWD2}};
+        try {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(CapabilityType.PLATFORM, Platform.ANDROID);
+            capabilities.setCapability(CapabilityType.VERSION, "4.4.2");
+            capabilities.setCapability("udid", "018f5cf89c8c39ca");
+            capabilities.setCapability("deviceName", "G2");
+            capabilities.setCapability("app", "/Users/tecdesdev/Desktop/Appium/wetterinfo_aligned.apk");
+            capabilities.setCapability("appPackage", "com.telekom.wetterinfo");
+            tempWD3 = new AndroidDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
+            tempWD3.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Object[][] tempDriver = new Object[][]{
+                                                      {"20715382", tempWD1},
+                                                      {"06510ebe170ef362", tempWD2},
+                                                      {"018f5cf89c8c39ca", tempWD3}
+                                            };
 
         return tempDriver;
     }
@@ -119,7 +139,6 @@ public class WetterInfo {
 	//capabilities.setCapability("appActivity", ".app.DialogActivity");
 	wd = new AndroidDriver(new URL("http://127.0.0.1:4444/wd/hub"), capabilities);
 	wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);*/
-
     }
 
 

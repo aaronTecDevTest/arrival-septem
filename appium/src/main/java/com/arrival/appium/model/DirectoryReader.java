@@ -1,4 +1,4 @@
-package com.arrival.appium.server;
+package com.arrival.appium.model;
 
 import java.io.IOException;
 import java.nio.file.Files;

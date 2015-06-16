@@ -1,7 +1,7 @@
 {
   "capabilities": [
     {
-      "browserName": "Android",
+      "browserName": "chrome",
       "version": "4.4.2",
       "maxInstances": 1,
       "platform": "ANDROID",

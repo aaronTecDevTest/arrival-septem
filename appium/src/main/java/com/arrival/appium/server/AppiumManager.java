@@ -1,11 +1,14 @@
 package com.arrival.appium.server;
 
 import com.arrival.appium.SeleniumHub;
+import com.arrival.appium.model.DirectoryReader;
 import com.arrival.appium.model.NodeConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -82,10 +85,12 @@ public class AppiumManager {
     private void iniAppiumServer(){
         appiumServersList = new ArrayList<>();
         String platform;
+        String browserName;
 
         try {
             for(NodeConfig nodeConfig : nodeConfigList) {
                 platform = nodeConfig.getSingelCapabiites().getPlatform();
+                browserName = nodeConfig.getSingelCapabiites().getBrowserName();
                 switch(platform) {
                     case "ANDROID":
                         AppiumAndroid android = new AppiumAndroid(nodeConfig);
@@ -96,8 +101,14 @@ public class AppiumManager {
                         appiumServersList.add(amazon);
                         break;
                     case "IOS":
-                        AppiumIOS ios = new AppiumIOS(nodeConfig);
-                        appiumServersList.add(ios);
+                        if (!browserName.equalsIgnoreCase("safari")) {
+                            AppiumIOS ios = new AppiumIOS(nodeConfig);
+                            appiumServersList.add(ios);
+                        }else {
+                            AppiumIOS ios = new AppiumIOS(nodeConfig);
+                            ios.startIOSWebKitDebugProxy();
+                            appiumServersList.add(ios);
+                        }
                         break;
                     default:
                         System.out.println("No Server Class found for NodeConfig!");
@@ -133,6 +144,33 @@ public class AppiumManager {
         }
     }
 
+
+    //ToDO: for hub und AppiumServer do implement
+    private boolean isLocalPortInUse(int port) {
+        try {
+            // ServerSocket try to open a LOCAL port
+            new ServerSocket(port).close();
+            // local port can be opened, it's available
+            return false;
+        } catch(IOException e) {
+            // local port cannot be opened, it's in use
+            return true;
+        }
+    }
+
+    //ToDO: for hub und AppiumServer do implement
+    private boolean isRemotePortInUse(String hostName, int portNumber) {
+        try {
+            // Socket try to open a REMOTE port
+            new Socket(hostName, portNumber).close();
+            // remote port can be opened, this is a listening port on remote machine
+            // this port is in use on the remote machine !
+            return true;
+        } catch(Exception e) {
+            // remote port is closed, nothing is running on
+            return false;
+        }
+    }
 
     public DirectoryReader getDirReader() {
         return dirReader;
