@@ -30,16 +30,16 @@ public class AppiumManager {
 
     public static void main(String[] args) throws IOException {
 
-        AppiumManager readJson = new AppiumManager();
-        readJson.startHubWithNode();
-        /*try{
-            Thread.sleep(60000);
+        AppiumManager manager = new AppiumManager();
+        manager.startHubWithNode();
+        try{
+            Thread.sleep(30000);
         }
         catch (Exception e) {
 
-        }*/
-        //readJson.stopHubWithNode();
-        System.out.printf(readJson.toString());
+        }
+        manager.stopHubWithNode();
+        System.out.printf(manager.toString());
         //readJson=null;
     }
 
@@ -135,10 +135,13 @@ public class AppiumManager {
 
     private void stopHubWithNode(){
         try {
-            /*for(AppiumServer appiumServer:appiumServersList){
+           // hub.stopHub();
+
+            Thread.sleep(10000);
+
+            for(AppiumServer appiumServer:appiumServersList){
                 appiumServer.stopServer();
-            }*/
-            hub.stopHub();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

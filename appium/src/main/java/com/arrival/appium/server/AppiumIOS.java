@@ -15,6 +15,8 @@ import java.nio.file.Path;
 public class AppiumIOS implements AppiumServer {
 
     private NodeConfig nodeConfig;
+    private Long processID; //PID
+
     private static String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
     private static String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
     private static Integer webKitProxyPort= 27751; //27752-27852
@@ -103,6 +105,14 @@ public class AppiumIOS implements AppiumServer {
 
     public void setNodeConfig(NodeConfig nodeConfig) {
         this.nodeConfig = nodeConfig;
+    }
+
+    public Long getProcessID() {
+        return processID;
+    }
+
+    public void setProcessID(Long processID) {
+        this.processID = processID;
     }
 
     /**

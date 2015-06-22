@@ -123,13 +123,45 @@ public class WebChrome {
         // Wait for the page to load, timeout after 10 seconds
         (new WebDriverWait(wd, 10)).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
-                return d.getTitle().toLowerCase().startsWith("cheese!");
+                return d.getTitle().toLowerCase().contains("cheese!");
             }
         });
 
         // Should see: "cheese! - Google Search"
         System.out.println("Page title is: " + wd.getTitle());
     }
+
+    @Test
+    public void getTOnlineTv() {
+        //  wd = ad;
+        pause(500);
+        // And now use this to visit Google
+        wd.get("http://www.t-online.de/tv");
+        // Alternatively the same thing can be done like this
+        // driver.navigate().to("http://www.google.com");
+        pause(1000);
+        //Find the text input element by its name
+       //WebElement element = wd.findElement(By.xpath("//*[@id=\"T-74389010\"]/div[2]/a"));
+       //WebElement element = wd.findElement(By.xpath("//*[@id=\"T-74389010\"]/div/div/a/div"));
+
+        // Check the title of the page
+        System.out.println("Page title is: " + wd.getTitle());
+
+        WebElement element = wd.findElement(By.xpath(".//*[@id=\"T-74389010\"]/div/L/a"));
+        element.click();
+        // Google's search is rendered dynamically with JavaScript.
+        // Wait for the page to load, timeout after 10 seconds
+      (new WebDriverWait(wd, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return d.getTitle().toLowerCase().contains("video");
+            }
+        });
+        pause(2000);
+        // Should see: "cheese! - Google Search"
+        System.out.println("Page title is: " + wd.getTitle());
+    }
+
+
 
     @AfterTest
     public void tearDown() throws Exception {
@@ -140,10 +172,8 @@ public class WebChrome {
     {
         try{
             Thread.sleep(timeInmilsec);
-        }catch (Exception e)
-        {
+        }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
