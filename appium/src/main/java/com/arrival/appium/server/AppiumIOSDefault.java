@@ -11,20 +11,24 @@ import java.nio.file.Path;
  * Created by tecdesdev on 26/05/15.
  */
 
-public class AppiumAmazon implements AppiumServer {
+
+public class AppiumIOSDefault implements AppiumServer {
 
     private NodeConfig nodeConfig;
+    private Long processID; //PID
+
     private static String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
     private static String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
+    private static Integer webKitProxyPort= 27751; //27752-27852
 
     /**
      * Standard Constructor
      */
-    public AppiumAmazon() {
+    public AppiumIOSDefault() {
         nodeConfig = null;
     }
 
-    public AppiumAmazon(NodeConfig nodeConfig) {
+    public AppiumIOSDefault(NodeConfig nodeConfig) {
         this.nodeConfig = nodeConfig;
     }
 
@@ -84,7 +88,7 @@ public class AppiumAmazon implements AppiumServer {
     }
 
     public static void setAppiumPath(String appiumPath) {
-        AppiumAmazon.appiumPath = appiumPath;
+        AppiumIOSDefault.appiumPath = appiumPath;
     }
 
     public static String getNodePath() {
@@ -92,7 +96,7 @@ public class AppiumAmazon implements AppiumServer {
     }
 
     public static void setNodePath(String nodePath) {
-        AppiumAmazon.nodePath = nodePath;
+        AppiumIOSDefault.nodePath = nodePath;
     }
 
     public NodeConfig getNodeConfig() {
@@ -102,4 +106,24 @@ public class AppiumAmazon implements AppiumServer {
     public void setNodeConfig(NodeConfig nodeConfig) {
         this.nodeConfig = nodeConfig;
     }
+
+    public Long getProcessID() {
+        return processID;
+    }
+
+    public void setProcessID(Long processID) {
+        this.processID = processID;
+    }
+
+    /**
+     *
+     */
+    public void startIOSWebKitDebugProxy(){
+        AppiumIOSDefault.webKitProxyPort++;
+    }
+
+    public void stopIOSWebKitDebugProxy(){
+        AppiumIOSDefault.webKitProxyPort--;
+    }
+
 }

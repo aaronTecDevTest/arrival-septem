@@ -11,6 +11,9 @@ public interface AppiumServer {
 
     public NodeConfig nodeConfig=null;
 
+    public String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
+    public String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
+
     /**
      * This functions start a current Server over commando line.
      **/
@@ -34,5 +37,6 @@ public interface AppiumServer {
      * * @param JSONFilePath -> The Path where the file existe.
      */
     public void runServerWithJSON(Path JSONFilePath);
+
 
 }

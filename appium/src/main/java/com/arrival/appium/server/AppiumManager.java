@@ -49,21 +49,31 @@ public class AppiumManager {
         nodeConfigList = new ArrayList<>();
 
         pathList = dirReader.getPathList();
-        iniNotConfig();
+        iniNodeConfig();
         iniAppiumServer();
     }
 
-    AppiumManager(String filePath,String hubHost, Integer hubPort) {
+    AppiumManager(String filePath, String hubHost, Integer hubPort) {
         dirReader = new DirectoryReader(filePath);
         hub = new SeleniumHub(hubHost, hubPort);
         nodeConfigList = new ArrayList<>();
 
         pathList = dirReader.getPathList();
-        iniNotConfig();
+        iniNodeConfig();
         iniAppiumServer();
     }
 
-    private void iniNotConfig(){
+    private void iniDefaultAndoridServer(){
+        AppiumAndroidDefault defaultAndroid = new AppiumAndroidDefault();
+        appiumServersList.add(defaultAndroid);
+    }
+
+    private void iniDefaultIOSServer(){
+        AppiumIOSDefault defaultIOS = new AppiumIOSDefault();
+        appiumServersList.add(defaultIOS);
+    }
+
+    private void iniNodeConfig(){
 
         try {
             ArrayList<String> jsonConfigDataList = new ArrayList<>();
@@ -96,10 +106,7 @@ public class AppiumManager {
                         AppiumAndroid android = new AppiumAndroid(nodeConfig);
                         appiumServersList.add(android);
                         break;
-                    case "AMAZONOS":
-                        AppiumAmazon amazon = new AppiumAmazon(nodeConfig);
-                        appiumServersList.add(amazon);
-                        break;
+
                     case "IOS":
                         if (!browserName.equalsIgnoreCase("safari")) {
                             AppiumIOS ios = new AppiumIOS(nodeConfig);
@@ -110,6 +117,7 @@ public class AppiumManager {
                             appiumServersList.add(ios);
                         }
                         break;
+
                     default:
                         System.out.println("No Server Class found for NodeConfig!");
                         break;
@@ -146,7 +154,6 @@ public class AppiumManager {
             e.printStackTrace();
         }
     }
-
 
     //ToDO: for hub und AppiumServer do implement
     private boolean isLocalPortInUse(int port) {
