@@ -10,16 +10,16 @@ import java.nio.file.Path;
 /**
  * Created by tecdesdev on 26/05/15.
  */
-
-
 public class AppiumIOS implements AppiumServer {
-
-    private NodeConfig nodeConfig;
-    private Long processID; //PID
+    private final static int MIN_WEB_KIT_PORT = 27751;
+    private final static int MAX_WEB_KIT_PORT = 27852;
 
     private static String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
     private static String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
-    private static Integer webKitProxyPort= 27751; //27752-27852
+    private static Integer webKitProxyPort= 27751;
+    private Process webKitProcess = null;
+    private Process process = null;
+    private NodeConfig nodeConfig;
 
     /**
      * Standard Constructor
@@ -38,18 +38,14 @@ public class AppiumIOS implements AppiumServer {
     @Override
     public void startServer() {
         try{
-            CommandLine command = new CommandLine(nodePath);
-            command.addArgument(appiumPath);
-            command.addArgument("--address");
-            command.addArgument(nodeConfig.getConfiguration().getHost());
-            command.addArgument("--port");
-            command.addArgument(nodeConfig.getConfiguration().getPort().toString());
-            command.addArgument("--nodeconfig");
-            command.addArgument(nodeConfig.getConfigPath().toString());
-            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-            DefaultExecutor executor = new DefaultExecutor();
-            executor.setExitValue(1);
-            executor.execute(command, resultHandler);
+            ProcessBuilder pb = new ProcessBuilder(
+                                                          nodePath,     appiumPath,
+                                                          "--address",  nodeConfig.getConfiguration().getHost(),
+                                                          "--port",     nodeConfig.getConfiguration().getPort().toString(),
+                                                          "--nodeconfig", nodeConfig.getConfigPath().toString()
+            );
+            process = pb.start();
+            startIOSWebKitDebugProxy();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -60,20 +56,27 @@ public class AppiumIOS implements AppiumServer {
      **/
     @Override
     public void stopServer() {
-
+        try {
+            process.destroy();
+            stopIOSWebKitDebugProxy();
+        }
+        catch(Throwable e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * This functions Restart a current Server over commando line.
+     * This functions restart a current Server over commando line.
      **/
     @Override
     public void restartSever() {
-
+        stopServer();
+        startServer();
     }
 
     /**
      * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
-     * * @param JSONFilePath -> The Path where the file existe.
+     * * @param JSONFilePath -> The Path where the file exist.
      */
     @Override
     public void runServerWithJSON(Path JSONFilePath) {
@@ -81,7 +84,7 @@ public class AppiumIOS implements AppiumServer {
     }
 
     /**
-     * Getter and Setter functions for appiumPath, nodePath and nodeConfig
+     * Getter and Setter functions for appiumPath, nodePath and nodeConfig.
      */
     public static String getAppiumPath() {
         return appiumPath;
@@ -107,23 +110,24 @@ public class AppiumIOS implements AppiumServer {
         this.nodeConfig = nodeConfig;
     }
 
-    public Long getProcessID() {
-        return processID;
-    }
-
-    public void setProcessID(Long processID) {
-        this.processID = processID;
-    }
-
     /**
-     *
+     * Launch the IOSWebKitDebugProxy for Safari test.
      */
     public void startIOSWebKitDebugProxy(){
         AppiumIOS.webKitProxyPort++;
+        try {
+            ProcessBuilder pb = new ProcessBuilder();
+            webKitProcess = pb.start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void stopIOSWebKitDebugProxy(){
-        AppiumIOS.webKitProxyPort--;
+        try {
+            webKitProcess.destroy();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
 }

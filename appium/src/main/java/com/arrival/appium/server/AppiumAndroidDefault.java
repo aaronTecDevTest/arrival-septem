@@ -1,10 +1,6 @@
 package com.arrival.appium.server;
 
 import com.arrival.appium.model.NodeConfig;
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecuteResultHandler;
-import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.ExecuteWatchdog;
 
 import java.nio.file.Path;
 
@@ -12,28 +8,29 @@ import java.nio.file.Path;
 /**
  * Created by tecdesdev on 26/05/15.
  */
-
 public class AppiumAndroidDefault implements AppiumServer {
 
     private static String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
     private static String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
-    private String host;
-    private Integer port;
-
-    private DefaultExecutor appiumProcess;
+    private static String appiumArg = "'/Applications/Appium.app/Contents/Resources/node/bin/node' " +
+                                              "lib/server/main.js " +
+                                              "--log-no-colors " +
+                                              "--debug-log-spacing " +
+                                              "--automation-name \"Appium\" " +
+                                              "--platform-name \"Android\" " +
+                                              "--platform-version \"4.4\"";
+    private Process process = null;
+    private NodeConfig nodeConfig = null;
 
 
     /**
      * Standard Constructor
      */
     public AppiumAndroidDefault() {
-        host = "localhost";
-        port = 4444;
     }
 
-    public AppiumAndroidDefault(String host, Integer port) {
-        this.host = host;
-        this.port = port;
+    public AppiumAndroidDefault(String appiumArg) {
+       this.appiumArg = appiumArg;
     }
 
     /**
@@ -42,20 +39,8 @@ public class AppiumAndroidDefault implements AppiumServer {
     @Override
     public void startServer(){
         try{
-            CommandLine command = new CommandLine(nodePath);
-            command.addArgument(appiumPath);
-            command.addArgument("--address");
-            command.addArgument(nodeConfig.getConfiguration().getHost());
-            command.addArgument("--port");
-            command.addArgument(nodeConfig.getConfiguration().getPort().toString());
-
-            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-            ExecuteWatchdog watchdog = new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT);
-
-            appiumProcess = new DefaultExecutor();
-            appiumProcess.setExitValue(0);
-            appiumProcess.setWatchdog(watchdog);
-            appiumProcess.execute(command, resultHandler);
+            ProcessBuilder pb = new ProcessBuilder(appiumArg);
+            process  = pb.start();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -67,25 +52,14 @@ public class AppiumAndroidDefault implements AppiumServer {
     @Override
     public void stopServer() {
         try {
-            /* CommandLine command = new CommandLine("/usr/bin/killall");
-            command.addArgument("-9");
-            command.addArgument("node");
-            command.addArgument("\"lsof -t -i:" + nodeConfig.getConfiguration().getProxy() + "\"");
-
-            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-            DefaultExecutor executor = new DefaultExecutor();
-            executor.setExitValue(0);
-            executor.execute(command, resultHandler);*/
-            appiumProcess.getWatchdog().destroyProcess();
-        }
-        catch(Throwable e)
-        {
+            process.destroy();
+        } catch(Throwable e) {
            e.printStackTrace();
         }
     }
 
     /**
-     * This functions Restart a current Server over commando line.
+     * This functions restart a current Server over commando line.
      **/
     @Override
     public void restartSever() {
@@ -95,7 +69,7 @@ public class AppiumAndroidDefault implements AppiumServer {
 
     /**
      * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
-     * * @param JSONFilePath -> The Path where the file existe.
+     * * @param JSONFilePath -> The Path where the file exist.
      */
     @Override
     public void runServerWithJSON(Path JSONFilePath) {
@@ -121,5 +95,19 @@ public class AppiumAndroidDefault implements AppiumServer {
         AppiumAndroidDefault.nodePath = nodePath;
     }
 
+    public Process getProcess() {
+        return process;
+    }
 
+    public void setProcess(Process process) {
+        this.process = process;
+    }
+
+    public static String getAppiumArg() {
+        return appiumArg;
+    }
+
+    public static void setAppiumArg(String appiumArg) {
+        AppiumAndroidDefault.appiumArg = appiumArg;
+    }
 }

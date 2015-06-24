@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by tecdesdev on 02/06/15.
- * //http://www.journaldev.com/2321/google-gson-api-for-json-processing-example-tutorial
+ *
  */
 public class AppiumManager {
 
@@ -33,14 +33,12 @@ public class AppiumManager {
         AppiumManager manager = new AppiumManager();
         manager.startHubWithNode();
         try{
-            Thread.sleep(30000);
-        }
-        catch (Exception e) {
-
+            Thread.sleep(10000);
+        }catch (Exception e) {
+            e.printStackTrace();
         }
         manager.stopHubWithNode();
         System.out.printf(manager.toString());
-        //readJson=null;
     }
 
     AppiumManager() {
@@ -74,7 +72,6 @@ public class AppiumManager {
     }
 
     private void iniNodeConfig(){
-
         try {
             ArrayList<String> jsonConfigDataList = new ArrayList<>();
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -128,11 +125,10 @@ public class AppiumManager {
         }
     }
 
+    //TODO: Start the Appium Server in deferrent tread.
     private void startHubWithNode(){
         try{
             hub.startHub();
-
-            //TODO: Start the Appium Server in deferrent tread.
             for(AppiumServer appiumServer:appiumServersList){
                 appiumServer.startServer();
             }
@@ -143,13 +139,10 @@ public class AppiumManager {
 
     private void stopHubWithNode(){
         try {
-           // hub.stopHub();
-
-            Thread.sleep(10000);
-
             for(AppiumServer appiumServer:appiumServersList){
                 appiumServer.stopServer();
             }
+            hub.stopHub();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -179,6 +172,20 @@ public class AppiumManager {
         } catch(Exception e) {
             // remote port is closed, nothing is running on
             return false;
+        }
+    }
+
+    public void startDefaulAppium(String plattformName){
+        if(plattformName.equalsIgnoreCase("andorid")) {
+            AppiumAndroidDefault androidDefault = new AppiumAndroidDefault();
+            androidDefault.startServer();
+        }
+        else if(plattformName.equalsIgnoreCase("ios")){
+            AppiumIOSDefault iosDefault = new AppiumIOSDefault();
+            iosDefault.startServer();
+            }
+        else{
+            System.out.println("PlattformName " + plattformName + " not found! Only 'Android' or 'IOS' its alloy.");
         }
     }
 

@@ -9,8 +9,6 @@ import java.nio.file.Path;
  */
 public interface AppiumServer {
 
-    public NodeConfig nodeConfig=null;
-
     public String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
     public String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
 
@@ -27,14 +25,14 @@ public interface AppiumServer {
 
 
     /**
-     * This functions Restart a current Server over commando line.
+     * This functions restart a current Server over commando line.
      **/
     public void restartSever();
 
 
     /**
      * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
-     * * @param JSONFilePath -> The Path where the file existe.
+     * * @param JSONFilePath -> The Path where the file exist.
      */
     public void runServerWithJSON(Path JSONFilePath);
 
