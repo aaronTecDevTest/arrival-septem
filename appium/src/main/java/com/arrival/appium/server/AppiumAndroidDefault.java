@@ -67,6 +67,7 @@ public class AppiumAndroidDefault implements AppiumServer {
         this.startServer();
     }
 
+
     /**
      * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
      * * @param JSONFilePath -> The Path where the file exist.
@@ -74,6 +75,14 @@ public class AppiumAndroidDefault implements AppiumServer {
     @Override
     public void runServerWithJSON(Path JSONFilePath) {
         nodeConfig.setConfigPath(JSONFilePath);
+    }
+
+    /**
+     * @return a Instance of AppiumServer e.g. AppiumSever for IOS oder Android
+     */
+    @Override
+    public AppiumAndroidDefault getInstance() {
+        return this;
     }
 
     /**

@@ -77,6 +77,14 @@ public class AppiumIOSDefault implements AppiumServer {
     }
 
     /**
+     * @return a Instance of AppiumServer e.g. AppiumSever for IOS oder Android
+     */
+    @Override
+    public AppiumIOSDefault getInstance() {
+        return this;
+    }
+
+    /**
      * Getter and Setter functions for appiumPath, nodePath and nodeConfig
      */
     public static String getAppiumPath() {

@@ -1,6 +1,7 @@
 package com.arrival.appium.server;
 
 import com.arrival.appium.model.NodeConfig;
+import jdk.nashorn.internal.objects.AccessorPropertyDescriptor;
 
 import java.nio.file.Path;
 
@@ -9,32 +10,37 @@ import java.nio.file.Path;
  */
 public interface AppiumServer {
 
-    public String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
-    public String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
+     String appiumPath = "/Applications/Appium.app/Contents/Resources/node_modules/appium/bin/appium.js";
+     String nodePath = "/Applications/Appium.app/Contents/Resources/node/bin/node";
 
     /**
      * This functions start a current Server over commando line.
      **/
-    public void startServer();
+     void startServer();
 
 
     /**
      * This functions start a current Server over commando line.
      **/
-    public void stopServer();
+     void stopServer();
 
 
     /**
      * This functions restart a current Server over commando line.
      **/
-    public void restartSever();
+    void restartSever();
 
 
     /**
      * This functions start a current Sever over commando line with JSON-NodeConfiguration file.
      * * @param JSONFilePath -> The Path where the file exist.
      */
-    public void runServerWithJSON(Path JSONFilePath);
+     void runServerWithJSON(Path JSONFilePath);
 
 
+    /**
+     *
+     * @return a Instance of AppiumServer e.g. AppiumSever for IOS oder Android
+     */
+     Object getInstance();
 }

@@ -51,6 +51,12 @@ public class AppiumManager {
         iniAppiumServer();
     }
 
+
+    /**
+     * @param filePath
+     * @param hubHost
+     * @param hubPort
+     */
     AppiumManager(String filePath, String hubHost, Integer hubPort) {
         dirReader = new DirectoryReader(filePath);
         hub = new SeleniumHub(hubHost, hubPort);
@@ -61,15 +67,27 @@ public class AppiumManager {
         iniAppiumServer();
     }
 
-    private void iniDefaultAndoridServer(){
-        AppiumAndroidDefault defaultAndroid = new AppiumAndroidDefault();
-        appiumServersList.add(defaultAndroid);
+
+    /**
+     * @param platformName can be "IOS" or "ANDROID"
+     */
+    AppiumManager(String platformName){
+        if(platformName.equalsIgnoreCase("android")) {
+            AppiumAndroidDefault androidDefault = new AppiumAndroidDefault();
+            androidDefault.startServer();
+            appiumServersList.add(androidDefault);
+        }
+        else if(platformName.equalsIgnoreCase("ios")){
+            AppiumIOSDefault iosDefault = new AppiumIOSDefault();
+            iosDefault.startServer();
+            appiumServersList.add(iosDefault);
+        }
+        else{
+            System.out.println("PlatformName " + platformName + " not found! Only 'Android' or 'IOS' its alloy.");
+        }
     }
 
-    private void iniDefaultIOSServer(){
-        AppiumIOSDefault defaultIOS = new AppiumIOSDefault();
-        appiumServersList.add(defaultIOS);
-    }
+
 
     private void iniNodeConfig(){
         try {
@@ -103,7 +121,6 @@ public class AppiumManager {
                         AppiumAndroid android = new AppiumAndroid(nodeConfig);
                         appiumServersList.add(android);
                         break;
-
                     case "IOS":
                         if (!browserName.equalsIgnoreCase("safari")) {
                             AppiumIOS ios = new AppiumIOS(nodeConfig);
@@ -114,7 +131,6 @@ public class AppiumManager {
                             appiumServersList.add(ios);
                         }
                         break;
-
                     default:
                         System.out.println("No Server Class found for NodeConfig!");
                         break;
@@ -175,17 +191,63 @@ public class AppiumManager {
         }
     }
 
-    public void startDefaulAppium(String plattformName){
-        if(plattformName.equalsIgnoreCase("andorid")) {
+
+    private void iniDefaultAndoridServer(){
+        AppiumAndroidDefault defaultAndroid = new AppiumAndroidDefault();
+        appiumServersList.add(defaultAndroid);
+    }
+
+    private void iniDefaultIOSServer(){
+        AppiumIOSDefault defaultIOS = new AppiumIOSDefault();
+        appiumServersList.add(defaultIOS);
+    }
+
+    public void stopAppiumServerOnPort(Integer serverPort){
+        for (AppiumServer server: appiumServersList) {
+            Integer port;
+            if (server.getInstance() instanceof AppiumAndroid) {
+                AppiumAndroid inc = (AppiumAndroid) server.getInstance();
+                port =  inc.getNodeConfig().getConfiguration().getPort();
+            }
+            else if (server.getInstance() instanceof AppiumIOS){
+                AppiumIOS inc = (AppiumIOS) server.getInstance();
+                port = inc.getNodeConfig().getConfiguration().getPort();
+            }
+            else{
+                port = 0;
+            }
+
+            if(port == serverPort){
+                server.stopServer();
+            }else{
+                System.out.println("Instance of port: " + serverPort + " not found.");
+            }
+        }
+    }
+
+    public void startDefaulAppiumServer(String platformName){
+        if(platformName.equalsIgnoreCase("android")) {
             AppiumAndroidDefault androidDefault = new AppiumAndroidDefault();
             androidDefault.startServer();
+            appiumServersList.add(androidDefault);
         }
-        else if(plattformName.equalsIgnoreCase("ios")){
+        else if(platformName.equalsIgnoreCase("ios")){
             AppiumIOSDefault iosDefault = new AppiumIOSDefault();
             iosDefault.startServer();
-            }
+            appiumServersList.add(iosDefault);
+        }
         else{
-            System.out.println("PlattformName " + plattformName + " not found! Only 'Android' or 'IOS' its alloy.");
+            System.out.println("PlatformName " + platformName + " not found! Only 'Android' or 'IOS' its alloy.");
+        }
+    }
+
+    public void stopDefualAppiumServer(){
+        try {
+            for(AppiumServer appiumServer: appiumServersList) {
+                appiumServer.stopServer();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
