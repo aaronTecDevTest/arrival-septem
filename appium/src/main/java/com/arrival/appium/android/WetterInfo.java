@@ -12,6 +12,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -21,8 +22,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -183,7 +182,7 @@ public class WetterInfo {
         WebElement element3 = wd.findElement(By.id("com.telekom.wetterinfo:id/locations_item_fragment_current_location_city"));
 
         String text = element3.getText();
-        assertTrue(text.contains("Darmstadt"));
+        Assert.assertTrue(text.contains("Darmstadt"));
     }
   /*
   @Test

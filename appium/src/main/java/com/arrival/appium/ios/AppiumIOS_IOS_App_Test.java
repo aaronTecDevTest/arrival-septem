@@ -2,7 +2,8 @@ package com.arrival.appium.ios;
 
 //import org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
+import org.testng.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -94,7 +95,7 @@ public class AppiumIOS_IOS_App_Test {
             // login button
             WebElement login_button = driver.findElement(By
                                                                  .xpath("//window[1]/button[3]"));
-            Assert.assertTrue("Email signup Fail", login_button.isDisplayed());
+            Assert.assertEquals("Email signup Fail", login_button.isDisplayed());
             login_button.click();
             Thread.sleep(3000);
 
@@ -136,8 +137,7 @@ public class AppiumIOS_IOS_App_Test {
         // enter keyword
         try {
             url = driver.findElement(By.xpath("//window[1]/textfield[1]"));
-            Assert.assertTrue("Search fail - Could not type in omnibar",
-                                     url.isDisplayed());
+            Assert.assertEquals("Search fail - Could not type in omnibar", url.isDisplayed());
             url.click();
 
             // search something
@@ -166,7 +166,7 @@ public class AppiumIOS_IOS_App_Test {
             //log out
             WebElement log_out = driver.findElement(By
                                                             .xpath("//window[1]/tableview[1]/cell[1]"));
-            Assert.assertTrue("Log out fail", log_out.isDisplayed());
+            Assert.assertEquals("Log out fail", log_out.isDisplayed());
             log_out.click();
             Thread.sleep(3000);
             driver.findElement(By.name("Yes")).click();
@@ -183,9 +183,8 @@ public class AppiumIOS_IOS_App_Test {
     public void openMenu() throws InterruptedException {
 
         try {
-            WebElement menu = driver.findElement(By
-                                                         .name("btn menu normal"));
-            Assert.assertTrue("Could not open menu", menu.isDisplayed());
+            WebElement menu = driver.findElement(By.name("btn menu normal"));
+            Assert.assertEquals("Could not open menu", menu.isDisplayed());
             menu.click();
             Thread.sleep(3000);
         } catch (AssertionError ex) {

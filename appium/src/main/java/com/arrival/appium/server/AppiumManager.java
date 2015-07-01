@@ -241,7 +241,7 @@ public class AppiumManager {
         }
     }
 
-    public void stopDefualAppiumServer(){
+    public void stopDefaulAppiumServer(){
         try {
             for(AppiumServer appiumServer: appiumServersList) {
                 appiumServer.stopServer();

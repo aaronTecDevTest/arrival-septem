@@ -8,11 +8,11 @@ package com.arrival.appium.ios;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.io.File;
 
@@ -21,7 +21,7 @@ public class AppiumIOS_WetterInfo_Live {
 
     private WebElement row;
 
-    @Before
+    @BeforeTest
     public void setUp() throws Exception {
         // set up appium
         // File classpathRoot = new File(System.getProperty("user.dir"));
@@ -48,7 +48,7 @@ public class AppiumIOS_WetterInfo_Live {
         capabilities.setCapability("app", app.getAbsolutePath());
     }
 
-    @After
+    @AfterTest
     public void tearDown() throws Exception {
         driver.quit();
     }

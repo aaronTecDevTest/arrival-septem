@@ -5,9 +5,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -27,7 +28,7 @@ public class AppiumIOS_Test_All_Generic_Functions extends Generic {
     //private AppiumDriver driver;
     private IOSDriver driver;
 
-    @Before
+    @BeforeTest
     public void setUp() throws Exception {
         // set up appium
         File appDir = new File("/Users/hendriklohrum/Desktop/Appium");
@@ -55,7 +56,7 @@ public class AppiumIOS_Test_All_Generic_Functions extends Generic {
         driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
-    @After
+    @AfterTest
     public void tearDown() throws Exception {
         Thread.sleep(10000);
         driver.quit();
