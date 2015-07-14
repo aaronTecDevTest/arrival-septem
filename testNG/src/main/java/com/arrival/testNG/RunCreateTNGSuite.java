@@ -2,7 +2,6 @@ package com.arrival.testNG;
 
 import com.arrival.testNG.listener.EmailListener;
 import com.arrival.testNG.listener.PreConfigListener;
-import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -60,11 +59,10 @@ public class RunCreateTNGSuite {
     private void createVirtualSuite() {
         suite.setName("TmpSuite");
         testXML.setName("TmpTest");
+        classes.add(new XmlClass("com.arrival.testNG.generic.AppiumConfigSingleton"));
         classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest1"));
         classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest2"));
         testXML.setXmlClasses(classes);
-
-       // System.out.println(testXML.getSuite().toXml());
         pcl.setClasses(classes);
     }
 
@@ -74,7 +72,7 @@ public class RunCreateTNGSuite {
     private String getNewPathDirectory() {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
         Calendar cal = Calendar.getInstance();
-        String tempPath = "D:/Dev/project/arrival-septem/testNG/src/main/resources/testng/result/";
+        String tempPath = "../arrival-septem/testNG/src/main/resources/testng/result/";
         String outPutDirectory = tempPath + dateFormat.format(cal.getTime());
 
         createNewDirectory(outPutDirectory);

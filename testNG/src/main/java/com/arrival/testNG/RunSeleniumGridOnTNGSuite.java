@@ -59,8 +59,6 @@ public class RunSeleniumGridOnTNGSuite {
 
         classes.add(new XmlClass("com.arrival.selenium.SeleniumRunTestOnMultiGrid"));
         testXML.setXmlClasses(classes);
-
-        // System.out.println(testXML.getSuite().toXml());
     }
 
     /**
