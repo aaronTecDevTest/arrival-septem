@@ -1,5 +1,8 @@
 package com.arrival.testNG;
 
+import com.arrival.testNG.listener.EmailListener;
+import com.arrival.testNG.listener.PreConfigListener;
+import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -26,9 +29,19 @@ public class RunCreateTNGSuite {
 
     XmlTest testXML = new XmlTest(suite);
 
+    EmailListener eml;
+    PreConfigListener pcl;
+
     public RunCreateTNGSuite() {
+
+        eml = new EmailListener();
+        pcl = new PreConfigListener();
+
         tng.setOutputDirectory(getNewPathDirectory());
         tng.setDefaultSuiteName("RegressionsTest");
+        tng.addListener(eml);
+        tng.addListener(pcl);
+
         testXML.setName("RegressionsTest");
     }
 
@@ -47,12 +60,12 @@ public class RunCreateTNGSuite {
     private void createVirtualSuite() {
         suite.setName("TmpSuite");
         testXML.setName("TmpTest");
-
         classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest1"));
         classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest2"));
         testXML.setXmlClasses(classes);
 
-        // System.out.println(testXML.getSuite().toXml());
+       // System.out.println(testXML.getSuite().toXml());
+        pcl.setClasses(classes);
     }
 
     /**
