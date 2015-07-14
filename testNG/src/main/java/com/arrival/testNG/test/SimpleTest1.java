@@ -4,7 +4,7 @@ package com.arrival.testNG.test;
  * Created by a.kutekidila on 04.05.2015.
  */
 
-import com.arrival.testNG.listener.generic.ArrivalMobil;
+import com.arrival.testNG.generic.ArrivalMobil;
 import org.testng.annotations.Test;
 
 public class SimpleTest1 extends ArrivalMobil{
