@@ -59,7 +59,7 @@ public class RunCreateTNGSuite {
     private void createVirtualSuite() {
         suite.setName("TmpSuite");
         testXML.setName("TmpTest");
-        classes.add(new XmlClass("com.arrival.testNG.generic.AppiumConfigSingleton"));
+        classes.add(new XmlClass("com.arrival.testNG.arrivalGeneric.AppiumConfigSingleton"));
         classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest1"));
         classes.add(new XmlClass("com.arrival.testNG.test.SimpleTest2"));
         testXML.setXmlClasses(classes);

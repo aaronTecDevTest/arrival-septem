@@ -74,6 +74,18 @@ public class DirectoryReader {
         return temp;
     }
 
+    private ArrayList<Path> getOnlyJsonPath(ArrayList<Path> allPath, String extenden) {
+        ArrayList<Path> temp = new ArrayList<>();
+
+        for (Path path : allPath) {
+            boolean isJson = path.getFileName().toString().contains("json");
+            if (isJson) {
+                temp.add(path);
+            }
+        }
+        return temp;
+    }
+
     public ArrayList<Path> getPathList() {
         return pathList;
     }

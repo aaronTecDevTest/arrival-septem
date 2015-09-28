@@ -31,7 +31,7 @@ public class PreConfigListener implements IExecutionListener {
     public void onExecutionStart() {
         startTime = System.currentTimeMillis();
         System.out.println("TestNG is going to start");
-        int size = classes.size();
+//        int size = classes.size();
         for(XmlClass xmlClass: classes) {
             System.out.println(xmlClass.getClass().getCanonicalName() + "hier muss was");
         }

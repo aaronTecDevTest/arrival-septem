@@ -14,7 +14,8 @@ public class SimpleTest2 extends ArrivalMobil {
         System.out.println("Fast test 20 " +  serverName + " " + id);
     }
 
-    @Test(dataProvider = "driver", groups = {"slow"})
+    @Test(dataProvider = "driver", groups = {"slow"}, description = "sdfafasdfasdfasfasdfasdfasfasfas")
+
     public void aSlowTest(String serverName, Integer id) {
         System.out.println("Slow test 30 " + serverName + " " + id);
     }

@@ -66,7 +66,7 @@ public class SeleniumMultipleGrid {
         }
         DesiredCapabilities chrome = DesiredCapabilities.chrome();
         chrome.setBrowserName("*googlechrome");
-        chrome.setPlatform(Platform.WINDOWS);
+        chrome.setPlatform(Platform.MAC);
 
         try {
             remoteRCNode = attachNodeToHub(chrome, GridRole.NODE, 5556, SeleniumProtocol.Selenium);

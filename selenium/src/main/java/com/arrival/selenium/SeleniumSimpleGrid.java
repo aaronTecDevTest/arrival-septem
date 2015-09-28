@@ -70,7 +70,7 @@ public class SeleniumSimpleGrid {
         FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
         firefox.setCapability(FirefoxDriver.PROFILE, profile);
         firefox.setCapability("seleniumProtocol", SeleniumProtocol.Selenium);
-        firefox.setCapability("platform", Platform.WINDOWS);
+        firefox.setCapability("platform", Platform.MAC);
         req.addDesiredCapability(firefox);
 
         nodeConfiguration = setUpNode();
@@ -100,7 +100,6 @@ public class SeleniumSimpleGrid {
         return nodeConfiguration;
     }
 
-
     public void runHubNode() {
         try {
             setUpHub();
@@ -109,7 +108,6 @@ public class SeleniumSimpleGrid {
             e.printStackTrace();
         }
     }
-
 
     public void shutDownNodeAndHub() throws Exception {
         if (remoteRCNode != null) {

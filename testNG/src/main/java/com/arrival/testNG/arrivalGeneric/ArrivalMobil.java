@@ -12,6 +12,7 @@ public abstract class ArrivalMobil  implements IFGenericAND, IFGenericIOS{
 
     public static AppiumConfigSingleton appiumConfi = AppiumConfigSingleton.getInstance();
     public ArrayList<Object> appiumServerList = new ArrayList<>();
+    public String linkToRealTestCaase;
 
     /*
      *Test NG method

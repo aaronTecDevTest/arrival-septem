@@ -4,6 +4,9 @@ package com.arrival.testNG;
  * Created by a.kutekidila on 13.05.2015.
  */
 
+/*
+Keine Listenner für diese Classe implementiert.
+ */
 import com.arrival.testNG.listener.EmailListener;
 import com.arrival.testNG.listener.PreConfigListener;
 import com.arrival.testNG.test.SimpleTest1;
@@ -13,16 +16,11 @@ import org.testng.TestNG;
 
 public class RunTestNGClasses {
     TestListenerAdapter tla;
-    EmailListener eml;
-    PreConfigListener pcl;
     TestNG testng;
 
 
     RunTestNGClasses() {
         tla = new TestListenerAdapter();
-        eml = new EmailListener();
-        pcl = new PreConfigListener();
-
         testng = new TestNG();
     }
 
@@ -34,8 +32,6 @@ public class RunTestNGClasses {
     public void run() {
         testng.setTestClasses(new Class[]{SimpleTest1.class, SimpleTest2.class});
         testng.addListener(tla);
-        testng.addListener(eml);
-        testng.addListener(pcl);
         testng.run();
     }
 }

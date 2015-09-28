@@ -84,7 +84,6 @@ public class AppiumIOS_IOS_App_Test {
         }
     }
 
-
     public void emailSignup() throws InterruptedException {
 
         try {
@@ -153,7 +152,6 @@ public class AppiumIOS_IOS_App_Test {
         }
     }
 
-
     public void logOut() throws InterruptedException {
 
         //appendSerialNumber();
@@ -192,7 +190,6 @@ public class AppiumIOS_IOS_App_Test {
             System.err.println(ex);
         }
     }
-
 
     public void FailureMessage() {
         System.out.println("Failure");
