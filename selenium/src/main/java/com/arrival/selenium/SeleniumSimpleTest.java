@@ -19,10 +19,10 @@ public class SeleniumSimpleTest {
     }
 
     public static void main(String[] args) {
-        SeleniumSimpleTest simpelTest = new SeleniumSimpleTest();
-        simpelTest.setUpConfi();
-        simpelTest.runTest();
-        simpelTest.closeBrowser();
+        SeleniumSimpleTest simpleTest = new SeleniumSimpleTest();
+        simpleTest.setUpConfi();
+        simpleTest.runTest();
+        simpleTest.closeBrowser();
     }
 
     public void setUpConfi() {
