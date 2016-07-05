@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/appium/appium.iml" filepath="$PROJECT_DIR$/appium/appium.iml" />
       <module fileurl="file://$PROJECT_DIR$/arrival-septem.iml" filepath="$PROJECT_DIR$/arrival-septem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cucumber/cucumber.iml" filepath="$PROJECT_DIR$/cucumber/cucumber.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaFX/javaFX.iml" filepath="$PROJECT_DIR$/javaFX/javaFX.iml" />
       <module fileurl="file://$PROJECT_DIR$/json/json.iml" filepath="$PROJECT_DIR$/json/json.iml" />
       <module fileurl="file://$PROJECT_DIR$/selenium/selenium.iml" filepath="$PROJECT_DIR$/selenium/selenium.iml" />
