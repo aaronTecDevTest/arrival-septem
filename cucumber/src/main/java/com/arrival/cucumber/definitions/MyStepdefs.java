@@ -11,6 +11,4 @@ public class MyStepdefs {
     public void I_have_cukes_in_my_belly(int cukes) {
         System.out.format("Cukes: %n\n", cukes);
     }
-
-
 }
