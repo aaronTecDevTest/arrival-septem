@@ -1,4 +1,0 @@
-Feature: CucumberSelenium
-Scenario : Open URL
-  Given openURL @url:
-  | www.google.com |
